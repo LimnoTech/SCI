@@ -12,7 +12,7 @@ assess_trash <- function(df) {
                   watershed = StreamReaches_20231002_INT.WATERSHED,
                   subshed = StreamReaches_20231002_INT.SUBSHED) %>%
     dplyr::group_by(id) %>%
-    dplyr::filter(date == max(date)) %>%
+    dplyr::filter(date == max(date)) %>%  # Include only the most recent survey for each reach
     dplyr::ungroup() %>%
     dplyr::left_join(trash_score, by = "trash_extent")
 
@@ -21,6 +21,9 @@ assess_trash <- function(df) {
     dplyr::group_by(subshed) %>%
     dplyr::summarise(avg_score = mean(score))
                      # sum_length = sum(reach_length))
+
+
+  return(df_summary)
 
 
 
