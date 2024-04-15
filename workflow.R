@@ -8,7 +8,7 @@ devtools::load_all(".")
 # Import Data -------------------------------------------------------------
 
 
-# Only needed if data in Excel gets updated
+# Only needed if data in Excel/CSV gets updated
     # dumpsite_score <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "dumpsite_score")
     # usethis::use_data(dumpsite_score, overwrite = TRUE)
     #
@@ -20,6 +20,12 @@ devtools::load_all(".")
     #
     # connectivity_score <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "connectivity_score")
     # usethis::use_data(connectivity_score, overwrite = TRUE)
+    #
+    # eia_area <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "eia_area")
+    # usethis::use_data(eia_area, overwrite = TRUE)
+    #
+    # subsheds <- read.csv("data/dc_subwatersheds.csv")
+    # usethis::use_data(subsheds, overwrite = TRUE)
 
 
 df_reach <- readxl::read_excel("J:/DDOEIP/GIS/GISData/Rapid_Stream_Assessment/2023/StreamReaches_20231002_INT.xlsx")
@@ -29,6 +35,3 @@ trash_summary <- assess_trash(df_reach)
 
 dumpsite_summary <- assess_dumpsites(df_point, df_reach)
 
-# assign_score(2)
-
-# assign_score2(2, dumpsite_score)
