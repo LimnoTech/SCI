@@ -38,13 +38,25 @@ format_results <- function(df){
 
 process_wq <- function(df){
 
-
+  # Filter data for target locations and parameters
   loc_id <- location$location_id
-
-  df_processed <- dplyr::mutate(results_processed <- dplyr::case_when(grepl("< ", Result ~ paste(Result, "<"))))
+  params <- c("Conductivity", "Dissolved oxygen (DO)", "Escherichia coli", "pH", "Phosphorus, Total (as P)", "Temperature, water", "Turbidity")
 
   df_processed <- df %>%
-    dplyr::filter(Location %in% loc_id)
+    dplyr::filter(Location %in% loc_id,
+                  Analyte %in% params,
+                  qualifier_processed != "?") %>%
+    dplyr::mutate(date_processed = as.Date(Date, format = "%d %b %Y"),
+                  result_processed = as.numeric(result_processed)) # Results in warning that NAs introduced by coercion - this is intended result)
+
+  # Remove results that are NA
+  df_processed <- df_processed %>%
+    tidyr::drop_na(result_processed)
+
+
+
+
+  return(df_processed)
 
 
 }

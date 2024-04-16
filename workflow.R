@@ -36,7 +36,9 @@ devtools::load_all(".")
 
 # df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI.xlsx")
 
-df_wq_processed <- format_results(df_test2)
+df_wq_formatted <- format_results(df)
+
+df_wq_processed <- process_wq(df_wq_formatted)
 
 
 
