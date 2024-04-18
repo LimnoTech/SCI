@@ -12,7 +12,7 @@ format_results <- function(df){
 
   for(i in 1:nrow(df)){
 
-    for(j in 1:length(quals)){
+    for(j in 1:length(quals_orig)){
 
       # If one of the qualifier symbols are found in the Results column:
       #   1) remove it in the results_processed field
@@ -52,6 +52,18 @@ process_wq <- function(df){
   # Remove results that are NA
   df_processed <- df_processed %>%
     tidyr::drop_na(result_processed)
+
+  # Rename and select key fields
+  df_processed <- df_processed %>%
+    dplyr::select(
+      sample_id = `Sample ID`,
+      location_id = Location,
+      date = date_processed,
+      parameter = Analyte,
+      unit = Unit,
+      result = result_processed,
+      qualifier = qualifier_processed
+    )
 
 
 
