@@ -42,17 +42,17 @@ df_wq_processed <- process_wq(df_wq_formatted)
 
 # Water Quality - Nutrients
 ## Units for criteria are in mg/L. Original dataset does not include units for non-detects. Function does not filter for units so ND results get included
-TP_summary <- assess_wq_nutrients(df_wq_processed, parameter_name = "Phosphorus, Total (as P)", piedmont_criteria = 0.04, coastal_plain_criteria = 0.0225)
-TN_summary <- assess_wq_nutrients(df_wq_processed, parameter_name = "Nitrogen", piedmont_criteria = 1.295, coastal_plain_criteria = 0.395)
+tp <- assess_wq_nutrients(df_wq_processed, parameter_name = "Phosphorus, Total (as P)", piedmont_criteria = 0.04, coastal_plain_criteria = 0.0225)
+tn <- assess_wq_nutrients(df_wq_processed, parameter_name = "Nitrogen", piedmont_criteria = 1.295, coastal_plain_criteria = 0.395)
 
 
 # Water Quality - Non-nutrient parameters
-temperature_summary <- assess_wq(df_wq_processed, parameter_name = "Temperature, water", unit = "deg C", max_criteria = 24)
-pH_summary <- assess_wq(df_wq_processed, parameter_name = "pH", max_criteria = 8.5, pH = "none", min_criteria = 6.0)
-DO_summary <- assess_wq(df_wq_processed, parameter_name = "Dissolved oxygen (DO)", unit = "mg/L", min_criteria = 5.0)
-Ecoli_summary <- assess_wq(df_wq_processed, parameter_name = "Escherichia coli", unit = "MPN/100mL", max_criteria = 410)
-turbidity_summary <- assess_wq(df_wq_processed, parameter_name = "Turbidity", unit = "NTU", max_criteria = 20.9)
-conductivity_summary <- assess_wq(df_wq_processed, parameter_name = "Conductivity", unit = "uS/cm", max_criteria = 300)
+temp <- assess_wq(df_wq_processed, parameter_name = "Temperature, water", unit = "deg C", max_criteria = 24)
+ph <- assess_wq(df_wq_processed, parameter_name = "pH",  unit = "none", max_criteria = 8.5, min_criteria = 6.0)
+do <- assess_wq(df_wq_processed, parameter_name = "Dissolved oxygen (DO)", unit = "mg/L", min_criteria = 5.0)
+ecoli <- assess_wq(df_wq_processed, parameter_name = "Escherichia coli", unit = "MPN/100mL", max_criteria = 410)
+turb <- assess_wq(df_wq_processed, parameter_name = "Turbidity", unit = "NTU", max_criteria = 20.9)
+cond <- assess_wq(df_wq_processed, parameter_name = "Conductivity", unit = "uS/cm", max_criteria = 300)
 
 
 
