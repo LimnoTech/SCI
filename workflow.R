@@ -34,14 +34,18 @@ devtools::load_all(".")
     # bmp_data <- read.csv("data/ipmt_export_01-01-2000_to_04-15-2024.csv")
     # usethis::use_data(bmp_data, overwrite = TRUE)
 
-# df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI.xlsx")
+df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI.xlsx")
 
 df_wq_formatted <- format_results(df_wq)
 
 df_wq_processed <- process_wq(df_wq_formatted)
 
 
-pH_summary <- assess_pH(df_wq_processed)
+x <- df_wq_processed %>% dplyr::filter(parameter == "pH", sample_id == "RCR01_170117")
+
+# pH_summary <- assess_pH(df_wq_processed, parameter_name = "pH", min_criteria = 6.0)
+# pH_summary <- assess_pH(df_wq_processed, parameter_name = "pH", max_criteria = 8.5)
+pH_summary <- assess_pH(df_wq_processed, parameter_name = "pH", max_criteria = 8.5, min_criteria = 6.0)
 
 
 
