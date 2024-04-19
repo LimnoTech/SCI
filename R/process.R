@@ -40,7 +40,7 @@ process_wq <- function(df){
 
   # Filter data for target locations and parameters
   loc_id <- location$location_id
-  params <- c("Conductivity", "Dissolved oxygen (DO)", "Escherichia coli", "pH", "Phosphorus, Total (as P)", "Temperature, water", "Turbidity")
+  params <- c("Conductivity", "Dissolved oxygen (DO)", "Escherichia coli", "pH", "Phosphorus, Total (as P)", "Nitrogen", "Temperature, water", "Turbidity")
 
   df_processed <- df %>%
     dplyr::filter(Location %in% loc_id,

@@ -40,20 +40,28 @@ df_wq_formatted <- format_results(df_wq)
 
 df_wq_processed <- process_wq(df_wq_formatted)
 
+# Water Quality - Nutrients
+TP_summary <- assess_wq_nutrients(df_wq_processed, parameter_name = "Phosphorus, Total (as P)", piedmont_criteria = 0.04, coastal_plain_criteria = 0.0225)
+TN_summary <- assess_wq_nutrients(df_wq_processed, parameter_name = "Nitrogen", piedmont_criteria = 1.295, coastal_plain_criteria = 0.395)
 
-x <- df_wq_processed %>% dplyr::filter(parameter == "pH", sample_id == "RCR01_170117")
 
-
+# Water Quality - Non-nutrient parameters
+temperature_summary <- assess_wq(df_wq_processed, parameter_name = "Temperature, water", max_criteria = 24)
 pH_summary <- assess_wq(df_wq_processed, parameter_name = "pH", max_criteria = 8.5, min_criteria = 6.0)
-
+DO_summary <- assess_wq(df_wq_processed, parameter_name = "Dissolved oxygen (DO)", min_criteria = 5.0)
+Ecoli_summary <- assess_wq(df_wq_processed, parameter_name = "Escherichia coli", max_criteria = 410)
 turbidity_summary <- assess_wq(df_wq_processed, parameter_name = "Turbidity", max_criteria = 20.9)
+conductivity_summary <- assess_wq(df_wq_processed, parameter_name = "Conductivity", max_criteria = 300)
 
 
 
-df_reach <- readxl::read_excel("J:/DDOEIP/GIS/GISData/Rapid_Stream_Assessment/2023/StreamReaches_20231002_INT.xlsx")
-df_point <- readxl::read_excel("J:/DDOEIP/GIS/GISData/Rapid_Stream_Assessment/2023/StreamPoints_20231002_INT.xlsx")
 
-trash_summary <- assess_trash(df_reach)
 
-dumpsite_summary <- assess_dumpsites(df_point, df_reach)
+
+# df_reach <- readxl::read_excel("J:/DDOEIP/GIS/GISData/Rapid_Stream_Assessment/2023/StreamReaches_20231002_INT.xlsx")
+# df_point <- readxl::read_excel("J:/DDOEIP/GIS/GISData/Rapid_Stream_Assessment/2023/StreamPoints_20231002_INT.xlsx")
+#
+# trash_summary <- assess_trash(df_reach)
+#
+# dumpsite_summary <- assess_dumpsites(df_point, df_reach)
 
