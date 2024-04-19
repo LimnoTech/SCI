@@ -43,9 +43,10 @@ df_wq_processed <- process_wq(df_wq_formatted)
 
 x <- df_wq_processed %>% dplyr::filter(parameter == "pH", sample_id == "RCR01_170117")
 
-# pH_summary <- assess_pH(df_wq_processed, parameter_name = "pH", min_criteria = 6.0)
-# pH_summary <- assess_pH(df_wq_processed, parameter_name = "pH", max_criteria = 8.5)
-pH_summary <- assess_pH(df_wq_processed, parameter_name = "pH", max_criteria = 8.5, min_criteria = 6.0)
+
+pH_summary <- assess_wq(df_wq_processed, parameter_name = "pH", max_criteria = 8.5, min_criteria = 6.0)
+
+turbidity_summary <- assess_wq(df_wq_processed, parameter_name = "Turbidity", max_criteria = 20.9)
 
 
 
