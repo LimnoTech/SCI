@@ -1,11 +1,12 @@
 
 
 
-assess_wq <- function(df, parameter_name, max_criteria = NULL, min_criteria = NULL){
+assess_wq <- function(df, parameter_name, unit, max_criteria = NULL, min_criteria = NULL){
 
 
   df_wq <- df %>%
-    dplyr::filter(parameter == parameter_name) %>%
+    dplyr::filter(parameter == parameter_name,
+                  unit == unit) %>%
     dplyr::mutate(excursion = NA,
                   outside_limit = NA)
 
