@@ -28,7 +28,10 @@ format_results <- function(df){
 
   df <- df %>%
     dplyr::mutate(result_processed = dplyr::case_when(result_processed == "" ~ NA,
-                                                TRUE ~ result_processed))
+                                                TRUE ~ result_processed)) %>%
+    dplyr::mutate(date_processed = as.Date(Date, format = "%d %b %Y"),
+                  result_processed = as.numeric(result_processed)) # Results in warning that NAs introduced by coercion - this is intended result)
+
 
   return(df)
 
@@ -45,9 +48,7 @@ process_wq <- function(df){
   df_processed <- df %>%
     dplyr::filter(Location %in% loc_id,
                   Analyte %in% params,
-                  qualifier_processed != "?") %>%
-    dplyr::mutate(date_processed = as.Date(Date, format = "%d %b %Y"),
-                  result_processed = as.numeric(result_processed)) # Results in warning that NAs introduced by coercion - this is intended result)
+                  qualifier_processed != "?")
 
   # Remove results that are NA
   df_processed <- df_processed %>%
