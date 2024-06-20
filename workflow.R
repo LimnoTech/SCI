@@ -14,8 +14,6 @@ devtools::load_all(".")
     #
     # dumpsite_score <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "dumpsite_score")
     # usethis::use_data(dumpsite_score, overwrite = TRUE)
-    #    # dumpsite_score <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "dumpsite_score")
-    # usethis::use_data(dumpsite_score, overwrite = TRUE)
     #
     # dumpsite_weight <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "dumpsite_weight")
     # usethis::use_data(dumpsite_weight, overwrite = TRUE)
@@ -35,13 +33,13 @@ devtools::load_all(".")
     # macroinvertebrate_summary <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "macroinvertebrate_summary")
     # usethis::use_data(macroinvertebrate_summary, overwrite = TRUE)
     #
+    # eia_location_id <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "eia_location_id")
+    # usethis::use_data(eia_location_id, overwrite = TRUE)
+    #
     # eia_area <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "eia_area")
     # usethis::use_data(eia_area, overwrite = TRUE)
 
 
-# Other Data
-    # bmp_data <- read.csv("data/ipmt_export_01-01-2000_to_04-15-2024.csv")
-    # usethis::use_data(bmp_data, overwrite = TRUE)
 
 df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI.xlsx")
 
