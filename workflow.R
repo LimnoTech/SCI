@@ -23,8 +23,17 @@ devtools::load_all(".")
     # trash_score <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "trash_score")
     # usethis::use_data(trash_score, overwrite = TRUE)
     #
-    # connectivity_score <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "connectivity_score")
-    # usethis::use_data(connectivity_score, overwrite = TRUE)
+    # connectivity_summary <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "connectivity_summary")
+    # usethis::use_data(connectivity_summary, overwrite = TRUE)
+    #
+    # fish_summary <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "fish_summary")
+    # usethis::use_data(fish_summary, overwrite = TRUE)
+    #
+    # habitat_summary <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "habitat_summary")
+    # usethis::use_data(habitat_summary, overwrite = TRUE)
+    #
+    # macroinvertebrate_summary <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "macroinvertebrate_summary")
+    # usethis::use_data(macroinvertebrate_summary, overwrite = TRUE)
     #
     # eia_area <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "eia_area")
     # usethis::use_data(eia_area, overwrite = TRUE)
@@ -55,14 +64,21 @@ turb <- assess_wq(df_wq_processed, parameter_name = "Turbidity", unit = "NTU", m
 cond <- assess_wq(df_wq_processed, parameter_name = "Conductivity", unit = "uS/cm", max_criteria = 300)
 
 
+# Aquatic Biology - Pull static results from lookup table
+conn <- connectivity_summary %>% dplyr::select(watershed, score)
+fish <- fish_summary %>% dplyr::select(watershed, score)
+hab <- habitat_summary %>% dplyr::select(watershed, score)
+macro <- macroinvertebrate_summary %>% dplyr::select(watershed, score)
 
 
-
-
+# Assess RSA Data
 df_reach <- readxl::read_excel("J:/DDOEIP/GIS/GISData/Rapid_Stream_Assessment/2023/StreamReaches_20231002_INT.xlsx")
 df_point <- readxl::read_excel("J:/DDOEIP/GIS/GISData/Rapid_Stream_Assessment/2023/StreamPoints_20231002_INT.xlsx")
 
 trash_summary <- assess_trash(df_reach)
-
 dumpsite_summary <- assess_dumpsites(df_point, df_reach)
+
+
+
+# EIA
 
