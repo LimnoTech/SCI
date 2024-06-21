@@ -79,4 +79,5 @@ dumpsite_summary <- assess_dumpsites(df_point, df_reach)
 
 
 # EIA
+eia_summary <- assess_eia("data/sgs_export_01-01-2000_to_12-31-2023_subshed_intersect.xlsx")
 
