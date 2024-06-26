@@ -1,35 +1,14 @@
 
 
-# assign_score <- function(value) {
-#
-#   # Make sure dumpsite scores are in descending order
-#   dumpsite_score <- dumpsite_score[order(-dumpsite_score$score),]
-#
-#   score <- NA
-#   for (i in 1:nrow(dumpsite_score)) {
-#     max <- dumpsite_score$max_sites_per_mile[i]
-#     if(!is.na(max) && !is.null(max)) {
-#       if (value <= max) {
-#         score <- dumpsite_score$score[i]
-#         break
-#       } else {
-#         score = 1
-#       }
-#     }
-#
-#   }
-#   return(score)
-# }
 
-
-assign_score2 <- function(value, lookup_table) {
+assign_score_from_maximum <- function(value, lookup_table, lookup_field) {
 
   # Make sure dumpsite scores are in descending order
   lookup_table <- lookup_table[order(-lookup_table$score),]
 
   score <- NA
   for (i in 1:nrow(lookup_table)) {
-    max <- lookup_table$max_sites_per_mile[i]
+    max <- lookup_table[[lookup_field]][i]
     if(!is.na(max) && !is.null(max)) {
       if (value <= max) {
         score <- lookup_table$score[i]
@@ -69,7 +48,7 @@ assess_dumpsites <- function(df_point, df_reach){
     dplyr::rowwise() %>%
     dplyr::mutate(subshed_length_miles = subshed_length_meters / 1609.344,
                   sites_per_mile = dumpsite_count / subshed_length_miles,
-                  score = assign_score2(sites_per_mile, dumpsite_score),
+                  score = assign_score_from_maximum(sites_per_mile, dumpsite_score, "max_sites_per_mile"),
                   score_weighted = score + applied_influence) %>%
     dplyr::mutate(score_weighted = dplyr::case_when(score_weighted < 1 ~ 1,
                                    TRUE ~ score_weighted)) # Score cannot be less than 1
