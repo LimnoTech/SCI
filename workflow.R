@@ -33,11 +33,14 @@ devtools::load_all(".")
     # macroinvertebrate_summary <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "macroinvertebrate_summary")
     # usethis::use_data(macroinvertebrate_summary, overwrite = TRUE)
     #
-    # eia_location_id <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "eia_location_id")
-    # usethis::use_data(eia_location_id, overwrite = TRUE)
+    # eia_subsheds <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "eia_subsheds")
+    # usethis::use_data(eia_subsheds, overwrite = TRUE)
     #
-    # eia_area <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "eia_area")
-    # usethis::use_data(eia_area, overwrite = TRUE)
+    # eia_rock_creek <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "eia_rock_creek")
+    # usethis::use_data(eia_rock_creek, overwrite = TRUE)
+    #
+    # eia_score <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "eia_score")
+    # usethis::use_data(eia_score, overwrite = TRUE)
 
 
 
