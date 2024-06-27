@@ -18,8 +18,17 @@ assess_eia <- function() {
 
   df <- df_subsheds %>%
     dplyr::union(df_rock_creek) %>%
+    dplyr::rowwise() %>%
     dplyr::mutate(effective_impervious = impervious - impervious_treated,
-                  percent_effective_impervious = effective_impervious / subshed * 100)
+                  percent_effective_impervious = effective_impervious / subshed * 100,
+                  score = assign_score_from_maximum(percent_effective_impervious, eia_score, "max_eia_percent"))
+
+
+  df_score <- df %>%
+    dplyr::select(sci_watershed, score)
+
+
+  return(list(summary = df, score = df_score))
 
   # # Import select columns and specify data types
   # types <- c("skip", "skip", "text", "skip", "skip", "skip", "skip", "skip", "skip", "skip",
