@@ -10,22 +10,19 @@ assess_trash <- function(df) {
                   trash_extent = StreamReaches_attributes.trash_extent,
                   # reach_length = StreamReaches_20231002_INT.Shape_Length,
                   watershed = StreamReaches_20231002_INT.WATERSHED,
-                  subshed = StreamReaches_20231002_INT.SUBSHED) %>%
+                  sci_subshed = StreamReaches_20231002_INT.SUBSHED) %>%
     dplyr::group_by(id) %>%
     dplyr::filter(date == max(date)) %>%  # Include only the most recent survey for each reach
     dplyr::ungroup() %>%
     dplyr::left_join(trash_score, by = "trash_extent")
 
-  df_summary <- df_recent %>%
+  df_score <- df_recent %>%
     dplyr::filter(!is.na(trash_extent)) %>%   # Remove data records with no trash extent entry
-    dplyr::group_by(subshed) %>%
-    dplyr::summarise(avg_score = mean(score))
+    dplyr::group_by(sci_subshed) %>%
+    dplyr::summarise(score = mean(score))
                      # sum_length = sum(reach_length))
 
-
-  return(df_summary)
-
-
+  return(df_score)
 
 
 }

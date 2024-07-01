@@ -47,7 +47,6 @@ devtools::load_all(".")
 df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI.xlsx")
 
 df_wq_formatted <- format_results(df_wq)
-
 df_wq_processed <- process_wq(df_wq_formatted)
 
 # Water Quality - Nutrients
@@ -77,10 +76,13 @@ df_reach <- readxl::read_excel("J:/DDOEIP/GIS/GISData/Rapid_Stream_Assessment/20
 df_point <- readxl::read_excel("J:/DDOEIP/GIS/GISData/Rapid_Stream_Assessment/2023/StreamPoints_20231002_INT.xlsx")
 
 trash_summary <- assess_trash(df_reach)
-dumpsite_summary <- assess_dumpsites(df_point, df_reach)
+dumpsite <- assess_dumpsites(df_point, df_reach)
 
 
 
 # EIA
 eia <- assess_eia()
+
+# Compile scores
+
 

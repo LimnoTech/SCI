@@ -27,24 +27,24 @@ assess_dumpsites <- function(df_point, df_reach){
   df_length <- df_reach %>%
     dplyr::select(id = StreamReaches_attributes.featureGlobalID_key,
            watershed = StreamReaches_20231002_INT.WATERSHED,
-           subshed = StreamReaches_20231002_INT.SUBSHED,
+           sci_subshed = StreamReaches_20231002_INT.SUBSHED,
            reach_length = StreamReaches_20231002_INT.Shape_Length) %>%
-    dplyr::group_by(subshed) %>%
+    dplyr::group_by(sci_subshed) %>%
     dplyr::summarise(subshed_length_meters = sum(reach_length))
 
   df_dump <- df_point %>%
     dplyr::select(assessment_type = StreamPoints_attributes.assessment_type,
                   d_impact = StreamPoints_attributes.d_impact,
-                  subshed = StreamPoints_20231002_INT.SUBSHED) %>%
+                  sci_subshed = StreamPoints_20231002_INT.SUBSHED) %>%
     dplyr::filter(assessment_type == "dumpsite") %>%
     dplyr::left_join(dumpsite_weight, by = "d_impact")
 
 
   df_summary <- df_dump %>%
-    dplyr::group_by(subshed) %>%
+    dplyr::group_by(sci_subshed) %>%
     dplyr::summarise(dumpsite_count = dplyr::n(),
                      applied_influence = min(score_influence)) %>%  # Use most conservative
-    dplyr::left_join(df_length, by = "subshed") %>%
+    dplyr::left_join(df_length, by = "sci_subshed") %>%
     dplyr::rowwise() %>%
     dplyr::mutate(subshed_length_miles = subshed_length_meters / 1609.344,
                   sites_per_mile = dumpsite_count / subshed_length_miles,
@@ -54,7 +54,11 @@ assess_dumpsites <- function(df_point, df_reach){
                                    TRUE ~ score_weighted)) # Score cannot be less than 1
 
 
+  df_score <- df_summary %>%
+    dplyr::select(sci_subshed,
+           score = score_weighted)
 
+  return(list(summary = df_summary, score = df_score))
 
 
 }

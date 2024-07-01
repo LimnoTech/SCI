@@ -4,13 +4,13 @@ assess_eia <- function() {
 
 
   df_subsheds <- eia_subsheds %>%
-    dplyr::group_by(sci_watershed) %>%
+    dplyr::group_by(sci_subshed) %>%
     dplyr::summarise(subshed = sum(analysis_subshed_m2),
                      impervious = sum(analysis_impervious_m2),
                      impervious_treated = sum(analysis_impervious_treated_m2))
 
   df_rock_creek <- eia_rock_creek %>%
-    dplyr::group_by(sci_watershed) %>%
+    dplyr::group_by(sci_subshed) %>%
     dplyr::summarise(subshed = sum(analysis_subshed_m2),
                      impervious = sum(analysis_impervious_m2),
                      impervious_treated = sum(analysis_impervious_treated_m2))
@@ -25,7 +25,7 @@ assess_eia <- function() {
 
 
   df_score <- df %>%
-    dplyr::select(sci_watershed, score)
+    dplyr::select(sci_subshed, score)
 
 
   return(list(summary = df, score = df_score))
