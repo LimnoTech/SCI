@@ -56,7 +56,7 @@ assess_dumpsites <- function(df_point, df_reach){
 
   df_score <- df_summary %>%
     dplyr::select(sci_subshed,
-           score = score_weighted)
+           Dumpsites = score_weighted)
 
   return(list(summary = df_summary, score = df_score))
 

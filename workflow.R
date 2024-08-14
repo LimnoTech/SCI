@@ -12,6 +12,9 @@ devtools::load_all(".")
     # location <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "location")
     # usethis::use_data(location, overwrite = TRUE)
     #
+    # location_name <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "location_name")
+    # usethis::use_data(location_name, overwrite = TRUE)
+    #
     # dumpsite_score <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "dumpsite_score")
     # usethis::use_data(dumpsite_score, overwrite = TRUE)
     #
@@ -72,10 +75,10 @@ macro <- macroinvertebrate_summary %>% dplyr::select(watershed, score)
 
 
 # Assess RSA Data
-df_reach <- readxl::read_excel("J:/DDOEIP/GIS/GISData/Rapid_Stream_Assessment/2023/StreamReaches_20231002_INT.xlsx")
-df_point <- readxl::read_excel("J:/DDOEIP/GIS/GISData/Rapid_Stream_Assessment/2023/StreamPoints_20231002_INT.xlsx")
+df_reach <- readxl::read_excel("data/StreamReaches_20231002_INT.xlsx")
+df_point <- readxl::read_excel("data/StreamPoints_20231002_INT.xlsx")
 
-trash_summary <- assess_trash(df_reach)
+trash <- assess_trash(df_reach)
 dumpsite <- assess_dumpsites(df_point, df_reach)
 
 
@@ -84,5 +87,9 @@ dumpsite <- assess_dumpsites(df_point, df_reach)
 eia <- assess_eia()
 
 # Compile scores
+all_scores <- trash[["score"]] %>%
+  dplyr::full_join(dumpsite[["score"]]) %>%
+  dplyr::full_join(eia[["score"]])
+
 
 
