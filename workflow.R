@@ -68,10 +68,14 @@ cond <- assess_wq(df_wq_processed, parameter_name = "Conductivity", unit = "uS/c
 
 
 # Aquatic Biology - Pull static results from lookup table
-conn <- connectivity_summary %>% dplyr::select(watershed, score)
-fish <- fish_summary %>% dplyr::select(watershed, score)
-hab <- habitat_summary %>% dplyr::select(watershed, score)
-macro <- macroinvertebrate_summary %>% dplyr::select(watershed, score)
+conn <- connectivity_summary %>% dplyr::select(sci_subshed,
+                                               Connectivity = score)
+fish <- fish_summary %>% dplyr::select(sci_subshed,
+                                       Fish = score)
+hab <- habitat_summary %>% dplyr::select(sci_subshed,
+                                         Habitat = score)
+macro <- macroinvertebrate_summary %>% dplyr::select(sci_subshed,
+                                                     Macroinvertebrates = score)
 
 
 # Assess RSA Data
@@ -97,7 +101,11 @@ all_scores <- trash[["score"]] %>%
   dplyr::full_join(turb[["score"]]) %>%
   dplyr::full_join(cond[["score"]]) %>%
   dplyr::full_join(tn[["score"]]) %>%
-  dplyr::full_join(tp[["score"]])
+  dplyr::full_join(tp[["score"]]) %>%
+  dplyr::full_join(conn) %>%
+  dplyr::full_join(fish) %>%
+  dplyr::full_join(hab) %>%
+  dplyr::full_join(macro)
 
 
 
