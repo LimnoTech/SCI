@@ -27,17 +27,21 @@ assess_dumpsites <- function(df_point, df_reach){
   df_length <- df_reach %>%
     dplyr::select(id = StreamReaches_attributes.featureGlobalID_key,
            watershed = StreamReaches_20231002_INT.WATERSHED,
-           sci_subshed = StreamReaches_20231002_INT.SUBSHED,
+           location_name = StreamReaches_20231002_INT.SUBSHED,
            reach_length = StreamReaches_20231002_INT.Shape_Length) %>%
+    dplyr::left_join(location_name, by = "location_name") %>%
     dplyr::group_by(sci_subshed) %>%
     dplyr::summarise(subshed_length_meters = sum(reach_length))
 
   df_dump <- df_point %>%
     dplyr::select(assessment_type = StreamPoints_attributes.assessment_type,
                   d_impact = StreamPoints_attributes.d_impact,
-                  sci_subshed = StreamPoints_20231002_INT.SUBSHED) %>%
+                  location_name = StreamPoints_20231002_INT.SUBSHED) %>%
+    dplyr::left_join(location_name, by = "location_name") %>%
     dplyr::filter(assessment_type == "dumpsite") %>%
-    dplyr::left_join(dumpsite_weight, by = "d_impact")
+    dplyr::left_join(dumpsite_weight, by = "d_impact") %>%
+    tidyr::drop_na(sci_subshed)
+
 
 
   df_summary <- df_dump %>%
@@ -54,9 +58,14 @@ assess_dumpsites <- function(df_point, df_reach){
                                    TRUE ~ score_weighted)) # Score cannot be less than 1
 
 
+  sheds <- unique(location_name$sci_subshed)
+  df_sheds <- data.frame(sci_subshed = sheds)
+
   df_score <- df_summary %>%
     dplyr::select(sci_subshed,
-           Dumpsites = score_weighted)
+           Dumpsites = score_weighted) %>%
+    dplyr::right_join(df_sheds, by = "sci_subshed") %>%
+    dplyr::mutate(Dumpsites = tidyr::replace_na(Dumpsites, 10)) # Any sci_subshed without dumpsite data gets a score of 10
 
   return(list(summary = df_summary, score = df_score))
 
