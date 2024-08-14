@@ -43,7 +43,7 @@ format_results <- function(df){
 process_wq <- function(df){
 
   # Filter data for target locations and parameters
-  loc_id <- location$location_id
+  loc_id <- location_id$location_id
   params <- c("Conductivity", "Dissolved oxygen (DO)", "Escherichia coli", "pH", "Phosphorus, Total (as P)", "Nitrogen", "Temperature, water", "Turbidity")
 
   df_processed <- df %>%

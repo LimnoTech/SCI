@@ -9,8 +9,8 @@ devtools::load_all(".")
 
 
 # Lookup Tables - Only needed if data in Excel gets updated
-    # location <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "location")
-    # usethis::use_data(location, overwrite = TRUE)
+    # location_id <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "location_id")
+    # usethis::use_data(location_id, overwrite = TRUE)
     #
     # location_name <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "location_name")
     # usethis::use_data(location_name, overwrite = TRUE)
@@ -89,7 +89,15 @@ eia <- assess_eia()
 # Compile scores
 all_scores <- trash[["score"]] %>%
   dplyr::full_join(dumpsite[["score"]]) %>%
-  dplyr::full_join(eia[["score"]])
+  dplyr::full_join(eia[["score"]]) %>%
+  dplyr::full_join(temp[["score"]]) %>%
+  dplyr::full_join(ph[["score"]]) %>%
+  dplyr::full_join(do[["score"]]) %>%
+  dplyr::full_join(ecoli[["score"]]) %>%
+  dplyr::full_join(turb[["score"]]) %>%
+  dplyr::full_join(cond[["score"]]) %>%
+  dplyr::full_join(tn[["score"]]) %>%
+  dplyr::full_join(tp[["score"]])
 
 
 

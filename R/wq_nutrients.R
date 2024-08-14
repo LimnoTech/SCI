@@ -6,7 +6,8 @@ assess_wq_nutrients <- function(df, parameter_name, piedmont_criteria, coastal_p
 
   df_results <- df %>%
     dplyr::filter(parameter == parameter_name) %>%
-    dplyr::left_join(location, by = "location_id") %>%
+    dplyr::left_join(location_id, by = "location_id") %>%
+    dplyr::left_join(location_name, by = "location_name") %>%
     dplyr::mutate(excursion = NA,
                   outside_limit = NA)
 
@@ -39,12 +40,13 @@ assess_wq_nutrients <- function(df, parameter_name, piedmont_criteria, coastal_p
 
 
   df_summary <- df_results %>%
-    dplyr::group_by(location_id) %>%
+    dplyr::group_by(sci_subshed) %>%
     dplyr::summarise(n_tests = dplyr::n(),
                      n_tests_failed = sum(outside_limit),
                      excursion = sum(excursion, na.rm = TRUE)) %>%
     dplyr::ungroup() %>%
-    dplyr::mutate(excursion = dplyr::case_when(is.na(n_tests_failed) ~ NA)) %>%   # Clear out values when ecoregion not set for a given location
+    dplyr::mutate(excursion = dplyr::case_when(is.na(n_tests_failed) ~ NA, # Clear out values when ecoregion not set for a given location
+                                               TRUE ~ excursion)) %>%
     dplyr::mutate(nse = excursion / n_tests,
                   f2 = n_tests_failed / n_tests * 100,
                   f3 = nse / (0.01 * nse + 0.01),
@@ -52,7 +54,8 @@ assess_wq_nutrients <- function(df, parameter_name, piedmont_criteria, coastal_p
                   score = wqi / 10)
 
   df_score <- df_summary %>%
-    dplyr::select(location_id, score)
+    dplyr::select(sci_subshed, score) %>%
+    dplyr::rename(!!parameter_name := score)
 
 
   return(list(results = df_results, summary = df_summary, score = df_score))

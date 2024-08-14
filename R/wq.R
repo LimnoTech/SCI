@@ -32,7 +32,9 @@ assess_wq <- function(df, parameter_name, unit, max_criteria = NULL, min_criteri
 
 
   df_summary <- df_results %>%
-    dplyr::group_by(location_id) %>%
+    dplyr::left_join(location_id, by = "location_id") %>%
+    dplyr::left_join(location_name, by = "location_name") %>%
+    dplyr::group_by(sci_subshed) %>%
     dplyr::summarise(n_tests = dplyr::n(),
                      n_tests_failed = sum(outside_limit),
                      excursion = sum(excursion, na.rm = TRUE)) %>%
@@ -45,7 +47,8 @@ assess_wq <- function(df, parameter_name, unit, max_criteria = NULL, min_criteri
 
 
   df_score <- df_summary %>%
-    dplyr::select(location_id, score)
+    dplyr::select(sci_subshed, score) %>%
+    dplyr::rename(!!parameter_name := score)
 
 
 
