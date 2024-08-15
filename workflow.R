@@ -49,8 +49,12 @@ devtools::load_all(".")
 
 df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI.xlsx")
 
+
+start_date <- "2018-07-01"
+end_date <- "2023-06-30"
+
 df_wq_formatted <- format_results(df_wq)
-df_wq_processed <- process_wq(df_wq_formatted)
+df_wq_processed <- process_wq(df_wq_formatted, start_date, end_date)
 
 # Water Quality - Nutrients
 ## Units for criteria are in mg/L. Original dataset does not include units for non-detects. Function does not filter for units so ND results get included

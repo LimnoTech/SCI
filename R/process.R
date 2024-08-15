@@ -40,16 +40,17 @@ format_results <- function(df){
 
 }
 
-process_wq <- function(df){
+process_wq <- function(df, start_date, end_date){
 
-  # Filter data for target locations and parameters
+  # Filter data for target locations and parameters and target date range
   loc_id <- location_id$location_id
   params <- c("Conductivity", "Dissolved oxygen (DO)", "Escherichia coli", "pH", "Phosphorus, Total (as P)", "Nitrogen", "Temperature, water", "Turbidity")
 
   df_processed <- df %>%
     dplyr::filter(location_format %in% loc_id,
                   Analyte %in% params,
-                  qualifier_format != "?")
+                  qualifier_format != "?",
+                  date_format >= start_date & date_format <= end_date)
 
   # Remove results that are NA
   df_processed <- df_processed %>%
