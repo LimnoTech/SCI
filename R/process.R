@@ -29,7 +29,7 @@ format_results <- function(df){
   df <- df %>%
     dplyr::mutate(result_format = dplyr::case_when(result_format == "" ~ NA,
                                                    TRUE ~ result_format)) %>%
-    dplyr::mutate(location_format = gsub("\\s+", "", Location)) %>%
+    dplyr::mutate(location_format = gsub("\\s+", "", Location)) %>% # Remove all spaces from location_id
     dplyr::mutate(date_format = as.Date(Date, format = "%d %b %Y"),
                   result_format = as.numeric(result_format)) # Results in warning that NAs introduced by coercion - this is intended result)
 
