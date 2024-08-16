@@ -42,13 +42,14 @@ format_results <- function(df){
 
 process_wq <- function(df, start_date, end_date){
 
-  # Filter data for target locations and parameters and target date range
+  # Filter data for target locations, parameters, units, and target date range
   loc_id <- location_id$location_id
-  params <- c("Conductivity", "Dissolved oxygen (DO)", "Escherichia coli", "pH", "Phosphorus, Total (as P)", "Nitrogen", "Temperature, water", "Turbidity")
+  params <- c("Conductivity", "Dissolved oxygen (DO)", "Escherichia coli", "Nitrogen", "pH", "Phosphorus, Total (as P)", "Temperature, water", "Turbidity")
+  param_units <- c("uS/cm", "mg/l", "MPN/100mL", "mg/l", "none", "mg/l", "deg C", "NTU")
 
   df_processed <- df %>%
     dplyr::filter(location_format %in% loc_id,
-                  Analyte %in% params,
+                  Analyte %in% params & (Unit %in% param_units | is.na(Unit)), # Filter the data for the list of parameters,  units, and also include rows with NA in the Unit column
                   qualifier_format != "?",
                   date_format >= start_date & date_format <= end_date)
 
