@@ -53,6 +53,9 @@ df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI.xlsx")
 start_date <- "2015-07-01"
 end_date <- "2020-06-30"
 
+rsa_start_date <- "2019-01-01"
+rsa_end_date <- "2023-12-31"
+
 df_wq_formatted <- format_results(df_wq)
 df_wq_processed <- process_wq(df_wq_formatted, start_date, end_date)
 
@@ -86,8 +89,8 @@ macro <- macroinvertebrate_summary %>% dplyr::select(sci_subshed,
 df_reach <- readxl::read_excel("data/StreamReaches_20231002_INT.xlsx")
 df_point <- readxl::read_excel("data/StreamPoints_20231002_INT.xlsx")
 
-trash <- assess_trash(df_reach)
-dumpsite <- assess_dumpsites(df_point, df_reach)
+trash <- assess_trash(df_reach, rsa_start_date, rsa_end_date)
+dumpsite <- assess_dumpsites(df_point, df_reach, rsa_start_date, rsa_end_date)
 
 
 

@@ -22,13 +22,15 @@ assign_score_from_maximum <- function(value, lookup_table, lookup_field) {
   return(score)
 }
 
-assess_dumpsites <- function(df_point, df_reach){
+assess_dumpsites <- function(df_point, df_reach, start_date, end_date){
 
   df_length <- df_reach %>%
     dplyr::select(id = StreamReaches_attributes.featureGlobalID_key,
-           watershed = StreamReaches_20231002_INT.WATERSHED,
-           location_name = StreamReaches_20231002_INT.SUBSHED,
-           reach_length = StreamReaches_20231002_INT.Shape_Length) %>%
+                  date = StreamReaches_attributes.assessment_time,
+                   watershed = StreamReaches_20231002_INT.WATERSHED,
+                   location_name = StreamReaches_20231002_INT.SUBSHED,
+                   reach_length = StreamReaches_20231002_INT.Shape_Length) %>%
+    dplyr::filter(date >= start_date & date <= end_date) %>%
     dplyr::left_join(location_name, by = "location_name") %>%
     dplyr::group_by(sci_subshed) %>%
     dplyr::summarise(subshed_length_meters = sum(reach_length))

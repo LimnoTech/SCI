@@ -2,15 +2,15 @@
 
 
 
-assess_trash <- function(df) {
+assess_trash <- function(df, start_date, end_date) {
 
   df_summary <- df %>%
     dplyr::select(id = StreamReaches_attributes.featureGlobalID_key,
                   date = StreamReaches_attributes.assessment_time,
                   trash_extent = StreamReaches_attributes.trash_extent,
-                  # reach_length = StreamReaches_20231002_INT.Shape_Length,
                   watershed = StreamReaches_20231002_INT.WATERSHED,
                   location_name = StreamReaches_20231002_INT.SUBSHED) %>%
+    dplyr::filter(date >= start_date & date <= end_date) %>%
     dplyr::group_by(id) %>%
     dplyr::filter(date == max(date)) %>%  # Include only the most recent survey for each reach
     dplyr::ungroup() %>%
