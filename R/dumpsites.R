@@ -37,8 +37,10 @@ assess_dumpsites <- function(df_point, df_reach, start_date, end_date){
 
   df_dump <- df_point %>%
     dplyr::select(assessment_type = StreamPoints_attributes.assessment_type,
+                  date = StreamPoints_attributes.assessment_time,
                   d_impact = StreamPoints_attributes.d_impact,
                   location_name = StreamPoints_20231002_INT.SUBSHED) %>%
+    dplyr::filter(date >= start_date & date <= end_date) %>%
     dplyr::left_join(location_name, by = "location_name") %>%
     dplyr::filter(assessment_type == "dumpsite") %>%
     dplyr::left_join(dumpsite_weight, by = "d_impact") %>%
