@@ -53,8 +53,8 @@ df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI.xlsx")
 start_date <- "2015-07-01"
 end_date <- "2020-06-30"
 
-rsa_start_date <- "2019-01-01"
-rsa_end_date <- "2023-12-31"
+rsa_start_date <- "2020-01-01"
+rsa_end_date <- "2024-12-31"
 
 df_wq_formatted <- format_results(df_wq)
 df_wq_processed <- process_wq(df_wq_formatted, start_date, end_date)
@@ -86,10 +86,22 @@ macro <- macroinvertebrate_summary %>% dplyr::select(sci_subshed,
 
 
 # Assess RSA Data
-df_reach <- readxl::read_excel("data/StreamReaches_20231002_INT.xlsx")
-df_point <- readxl::read_excel("data/StreamPoints_20231002_INT.xlsx")
+df_reach <- readxl::read_excel("data/StreamReaches_20241105.xlsx")
+df_point <- readxl::read_excel("data/StreamPoints_20241105_INT.xlsx")
 
-trash <- assess_trash(df_reach, rsa_start_date, rsa_end_date)
+
+# Define field name prefixes
+# Prefixes change depending on layer and table names pulled from geodatabase
+reach_prefix_from_table <- "StreamReachAttributes"  # Should match name of stream reach attribute table from RSA .gdb
+reach_prefix_from_layer <- "StreamReaches"          # Should match name of stream reach polyline layer from RSA .gdb
+
+point_prefix_from_table <- "StreamReachAttributes"  # Should match name of stream point attribute table from RSA .gdb
+point_prefix_from_layer <- "StreamReaches"          # Should match name of intersected stream point layer from RSA .gdb
+
+
+
+
+trash <- assess_trash(df_reach, rsa_start_date, rsa_end_date, reach_prefix_from_table, reach_prefix_from_layer)
 dumpsite <- assess_dumpsites(df_point, df_reach, rsa_start_date, rsa_end_date)
 
 
