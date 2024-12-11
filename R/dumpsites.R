@@ -22,24 +22,24 @@ assign_score_from_maximum <- function(value, lookup_table, lookup_field) {
   return(score)
 }
 
-assess_dumpsites <- function(df_point, df_reach, start_date, end_date){
+assess_dumpsites <- function(df_point, df_reach, start_date, end_date, reach_prefix_from_table, reach_prefix_from_layer, point_prefix_from_table, point_prefix_from_layer){
 
   df_length <- df_reach %>%
-    dplyr::select(id = StreamReaches_attributes.featureGlobalID_key,
-                  date = StreamReaches_attributes.assessment_time,
-                   watershed = StreamReaches_20231002_INT.WATERSHED,
-                   location_name = StreamReaches_20231002_INT.SUBSHED,
-                   reach_length = StreamReaches_20231002_INT.Shape_Length) %>%
+    dplyr::select(location_name = dplyr::all_of(paste0(reach_prefix_from_layer, ".subshed")),
+                  reach_length = dplyr::all_of(paste0(reach_prefix_from_layer, ".Shape_Length")),
+                  id = dplyr::all_of(paste0(reach_prefix_from_table, ".featureGlobalID_key")),
+                  date = dplyr::all_of(paste0(reach_prefix_from_table, ".assessment_time"))) %>%
     dplyr::filter(date >= start_date & date <= end_date) %>%
     dplyr::left_join(location_name, by = "location_name") %>%
     dplyr::group_by(sci_subshed) %>%
     dplyr::summarise(subshed_length_meters = sum(reach_length))
 
   df_dump <- df_point %>%
-    dplyr::select(assessment_type = StreamPoints_attributes.assessment_type,
-                  date = StreamPoints_attributes.assessment_time,
-                  d_impact = StreamPoints_attributes.d_impact,
-                  location_name = StreamPoints_20231002_INT.SUBSHED) %>%
+    dplyr::select(location_name = dplyr::all_of(paste0(point_prefix_from_layer, ".SUBSHED")),
+                  assessment_type = dplyr::all_of(paste0(point_prefix_from_table, ".assessment_type")),
+                  date = dplyr::all_of(paste0(point_prefix_from_table, ".assessment_time")),
+                  d_impact = dplyr::all_of(paste0(point_prefix_from_table, ".d_impact")),
+                  ) %>%
     dplyr::filter(date >= start_date & date <= end_date) %>%
     dplyr::left_join(location_name, by = "location_name") %>%
     dplyr::filter(assessment_type == "dumpsite") %>%

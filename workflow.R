@@ -95,14 +95,17 @@ df_point <- readxl::read_excel("data/StreamPoints_20241105_INT.xlsx")
 reach_prefix_from_table <- "StreamReachAttributes"  # Should match name of stream reach attribute table from RSA .gdb
 reach_prefix_from_layer <- "StreamReaches"          # Should match name of stream reach polyline layer from RSA .gdb
 
-point_prefix_from_table <- "StreamReachAttributes"  # Should match name of stream point attribute table from RSA .gdb
-point_prefix_from_layer <- "StreamReaches"          # Should match name of intersected stream point layer from RSA .gdb
+point_prefix_from_table <- "StreamPointAttributes"  # Should match name of stream point attribute table from RSA .gdb
+point_prefix_from_layer <- "StreamPoints_Intersect"          # Should match name of intersected stream point layer from RSA .gdb
 
 
 
 
 trash <- assess_trash(df_reach, rsa_start_date, rsa_end_date, reach_prefix_from_table, reach_prefix_from_layer)
-dumpsite <- assess_dumpsites(df_point, df_reach, rsa_start_date, rsa_end_date)
+dumpsite <- assess_dumpsites(df_point, df_reach,
+                             rsa_start_date, rsa_end_date,
+                             reach_prefix_from_table, reach_prefix_from_layer,
+                             point_prefix_from_table, point_prefix_from_layer)
 
 
 
