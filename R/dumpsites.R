@@ -30,6 +30,9 @@ assess_dumpsites <- function(df_point, df_reach, start_date, end_date, reach_pre
                   id = dplyr::all_of(paste0(reach_prefix_from_table, ".featureGlobalID_key")),
                   date = dplyr::all_of(paste0(reach_prefix_from_table, ".assessment_time"))) %>%
     dplyr::filter(date >= start_date & date <= end_date) %>%
+    dplyr::group_by(id) %>%
+    dplyr::slice_max(date, n=1, with_ties = FALSE) %>% # remove duplicate reaches. Keep most recent reach assessment
+    dplyr::ungroup() %>%
     dplyr::left_join(location_name, by = "location_name") %>%
     dplyr::group_by(sci_subshed) %>%
     dplyr::summarise(subshed_length_meters = sum(reach_length))
