@@ -31,7 +31,7 @@ assess_dumpsites <- function(df_point, df_reach, start_date, end_date, reach_pre
                   date = dplyr::all_of(paste0(reach_prefix_from_table, ".assessment_time"))) %>%
     dplyr::filter(date >= start_date & date <= end_date) %>%
     dplyr::group_by(id) %>%
-    dplyr::slice_max(date, n=1, with_ties = FALSE) %>% # remove duplicate reaches. Keep most recent reach assessment
+    dplyr::slice_max(date, n=1, with_ties = FALSE) %>% # Remove duplicate reaches. Keep most recent reach assessment. If same date/time and ID, maintain only one record
     dplyr::ungroup() %>%
     dplyr::left_join(location_name, by = "location_name") %>%
     dplyr::group_by(sci_subshed) %>%
@@ -44,6 +44,9 @@ assess_dumpsites <- function(df_point, df_reach, start_date, end_date, reach_pre
                   d_impact = dplyr::all_of(paste0(point_prefix_from_table, ".d_impact")),
                   ) %>%
     dplyr::filter(date >= start_date & date <= end_date) %>%
+    dplyr::group_by(id) %>%
+    dplyr::slice_max(date, n=1, with_ties = FALSE) %>% # Remove duplicate point. Keep most recent point assessment. If same date/time and ID, maintain only one record
+    dplyr::ungroup() %>%
     dplyr::left_join(location_name, by = "location_name") %>%
     dplyr::filter(assessment_type == "dumpsite") %>%
     dplyr::left_join(dumpsite_weight, by = "d_impact") %>%

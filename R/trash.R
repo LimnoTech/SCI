@@ -11,7 +11,7 @@ assess_trash <- function(df, start_date, end_date, reach_prefix_from_table, reac
                   trash_extent = dplyr::all_of(paste0(reach_prefix_from_table, ".trash_extent"))) %>%
     dplyr::filter(date >= start_date & date <= end_date) %>%
     dplyr::group_by(id) %>%
-    dplyr::filter(date == max(date)) %>%  # Include only the most recent survey for each reach
+    dplyr::slice_max(date, n=1, with_ties = FALSE) %>% # Remove duplicate reaches. Keep most recent reach assessment. If same date/time and ID, maintain only one record
     dplyr::ungroup() %>%
     dplyr::left_join(trash_score, by = "trash_extent") %>%
     dplyr::left_join(location_name, by = "location_name") %>%
