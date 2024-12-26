@@ -1,5 +1,15 @@
-
-
+#' Assign score based on lookup on maximum number of dumpsites per mile
+#'
+#' @param value Number of dumpsites per mile for a given subwatershed.
+#' @param lookup_table Lookup table of number of dumpsites per mile allowed per
+#'     score (1-10).
+#' @param lookup_field Column name containing the maximum number of sites per
+#'     mile.
+#'
+#' @return Numerical score (1-10)
+#' @export
+#'
+#' @examples assign_score_from_maximum(sites_per_mile, dumpsite_score, "max_sites_per_mile")
 
 assign_score_from_maximum <- function(value, lookup_table, lookup_field) {
 
@@ -21,6 +31,34 @@ assign_score_from_maximum <- function(value, lookup_table, lookup_field) {
   }
   return(score)
 }
+
+#' Calculate dumpsite scores
+#'
+#' @param df_point Point data from Rapid Stream Assessment (RSA) dataset.
+#' @param df_reach Reach data from Rapid Stream Assessment (RSA) dataset.
+#' @param start_date Beginning of timeframe being evaluated (ex. first day of
+#'     five-year assessment period).
+#' @param end_date End of timeframe being evaluated (ex. last day of
+#'     five-year assessment period).
+#' @param reach_prefix_from_table Field name prefix sourced from RSA reach
+#'     attribute table. Should be consistent with the name of the stream reach
+#'     attribute table from the RSA geodatabase.
+#' @param reach_prefix_from_layer Field name prefix sourced from RSA stream
+#'     reach layer. Should be consistent with the name of the stream reach
+#'     polyline layer from the RSA geodatabase.
+#' @param point_prefix_from_table Field name prefix sourced from RSA point
+#'     attribute table. Should be consistent with the name of the point
+#'     assessment attribute table from the RSA geodatabase.
+#' @param point_prefix_from_layer Field name prefix sourced from RSA point
+#'     layer. Should be consistent with the name of the intersected stream point
+#'     layer from the RSA geodatabase.
+#'
+#' @return List of 2 dataframes: summary and score.
+#' @export
+#'
+#' @examples assess_dumpsites(df_point, df_reach, "2020-01-01", "2024-12-31",
+#'     "StreamReachAttributes", "StreamReaches",
+#'     "StreamPointAttributes", "StreamPoints_Intersect" )
 
 assess_dumpsites <- function(df_point, df_reach, start_date, end_date, reach_prefix_from_table, reach_prefix_from_layer, point_prefix_from_table, point_prefix_from_layer){
 

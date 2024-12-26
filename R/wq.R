@@ -8,7 +8,7 @@
 #' @param max_criteria DC water quality criteria as a maximum value
 #' @param min_criteria DC water quality criteria as a minimum value
 #'
-#' @return List of three dataframes (results, summary, score)
+#' @return List of three dataframes: results, summary, score
 #' @export
 #'
 #' @examples assess_wq(df_wq_processed,

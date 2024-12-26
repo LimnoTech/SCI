@@ -56,7 +56,7 @@ end_date <- "2020-06-30"
 rsa_start_date <- "2020-01-01"
 rsa_end_date <- "2024-12-31"
 
-df_wq_formatted <- format_results(df_wq)
+df_wq_formatted <- format_wq(df_wq)
 df_wq_processed <- process_wq(df_wq_formatted, start_date, end_date)
 
 # Water Quality - Nutrients

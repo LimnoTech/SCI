@@ -1,10 +1,27 @@
+#' Calculate trash scores.
+#'
+#' @param df_reach Reach data from Rapid Stream Assessment (RSA) dataset.
+#' @param start_date Beginning of timeframe being evaluated (ex. first day of
+#'     five-year assessment period).
+#' @param end_date End of timeframe being evaluated (ex. last day of
+#'     five-year assessment period).
+#' @param reach_prefix_from_table Field name prefix sourced from RSA reach
+#'     attribute table. Should be consistent with the name of the stream reach
+#'     attribute table from the RSA geodatabase.
+#' @param reach_prefix_from_layer Field name prefix sourced from RSA stream
+#'     reach layer. Should be consistent with the name of the stream reach
+#'     polyline layer from the RSA geodatabase.
+#'
+#' @return List of 2 dataframes: summary and score.
+#' @export
+#'
+#' @examples assess_trash(df_reach, "2020-01-01", "2024-12-31",
+#'     "StreamReachAttributes", "StreamReaches")
 
 
+assess_trash <- function(df_reach, start_date, end_date, reach_prefix_from_table, reach_prefix_from_layer) {
 
-
-assess_trash <- function(df, start_date, end_date, reach_prefix_from_table, reach_prefix_from_layer) {
-
-  df_summary <- df %>%
+  df_summary <- df_reach %>%
     dplyr::select(location_name = dplyr::all_of(paste0(reach_prefix_from_layer, ".subshed")),
                   id = dplyr::all_of(paste0(reach_prefix_from_table, ".featureGlobalID_key")),
                   date = dplyr::all_of(paste0(reach_prefix_from_table, ".assessment_time")),

@@ -20,7 +20,7 @@ assess_wq(df, parameter_name, unit, max_criteria = NULL, min_criteria = NULL)
 \item{min_criteria}{DC water quality criteria as a minimum value}
 }
 \value{
-List of three dataframes (results, summary, score)
+List of three dataframes: results, summary, score
 }
 \description{
 Calculate water quality scores

@@ -1,5 +1,14 @@
+#' Format downloaded water quality data
+#'
+#' @param df DOEE Ambient Water Quality data downloaded from
+#'     \url{https://dcdoeepub.equisonline.com/PUBLIC.html}
+#'
+#' @return Formatted dataframe
+#' @export
+#'
+#' @examples format_wq(df_wq)
 
-format_results <- function(df){
+format_wq <- function(df){
 
   # Qualifiers to be moved to a separate field
   quals_orig <- c("< ", "> ", "\\? ","<", ">", "\\?")
@@ -40,6 +49,18 @@ format_results <- function(df){
 
 }
 
+#' Process formatted water quality data
+#'
+#' @param df Formatted dataframe returned from \code{\link{format_wq}}
+#' @param start_date Beginning of timeframe being evaluated (ex. first day of
+#'     five-year assessment period).
+#' @param end_date End of timeframe being evaluated (ex. last day of
+#'     five-year assessment period).
+#'
+#' @return Processed dataframe
+#' @export
+#'
+#' @examples process_wq(df_wq_formatted, "2015-07-01", "2020-06-30")
 process_wq <- function(df, start_date, end_date){
 
   # Filter data for target locations, parameters, units, and target date range

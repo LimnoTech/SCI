@@ -1,5 +1,9 @@
-
-
+#' Calculate scores for effective impervious area (EIA)
+#'
+#' @return List of 2 dataframes: summary and score.
+#' @export
+#'
+#' @examples assess_eia()
 assess_eia <- function() {
 
 

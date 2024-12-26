@@ -1,5 +1,14 @@
-
-
+#' Calculate water quality scores for nutrients
+#'
+#' @param df DOEE Ambient Water Quality Data that has been processed and formatted
+#' @param parameter_name String to indicate target parameter: "Nitrogen", "Phosphorus, Total (as P)"
+#' @param piedmont_criteria Nutrient criteria recommendation for Piedmont Ecoregion 64 in mg/L
+#' @param coastal_plain_criteria Nutrient criteria recommendation for Coastal Plain Ecoregion 65 in mg/L
+#'
+#' @return List of three dataframes: results, summary, score
+#' @export
+#'
+#' @examples assess_wq_nutrients(df_wq_processed, parameter_name = "Phosphorus, Total (as P)", piedmont_criteria = 0.04, coastal_plain_criteria = 0.0225)
 
 assess_wq_nutrients <- function(df, parameter_name, piedmont_criteria, coastal_plain_criteria){
 
