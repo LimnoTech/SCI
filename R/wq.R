@@ -1,7 +1,23 @@
-
-
-
+#' Calculate water quality scores
+#'
+#' @param df DOEE Ambient Water Quality Data that has been processed and formatted
+#' @param parameter_name String to indicate target parameter: "Conductivity",
+#'     "Dissolved oxygen (DO)", "Escherichia coli", "pH", "Temperature, water",
+#'     "Turbidity"
+#' @param unit String to indicate unit for water quality parameter
+#' @param max_criteria DC water quality criteria as a maximum value
+#' @param min_criteria DC water quality criteria as a minimum value
+#'
+#' @return List of three dataframes (results, summary, score)
+#' @export
+#'
+#' @examples assess_wq(df_wq_processed,
+#'                     parameter_name = "Temperature, water",
+#'                     unit = "deg C",
+#'                     max_criteria = 24)
 assess_wq <- function(df, parameter_name, unit, max_criteria = NULL, min_criteria = NULL){
+
+
 
 
   df_results <- df %>%
