@@ -6,7 +6,7 @@
 #' @return Formatted dataframe
 #' @export
 #'
-#' @examples format_wq(df_wq)
+#' @examples format_wq(df_wq_example)
 
 format_wq <- function(df){
 
@@ -60,7 +60,7 @@ format_wq <- function(df){
 #' @return Processed dataframe
 #' @export
 #'
-#' @examples process_wq(df_wq_formatted, "2015-07-01", "2020-06-30")
+#' @examples process_wq(df_wq_formatted_example, "2015-07-01", "2020-06-30")
 process_wq <- function(df, start_date, end_date){
 
   # Filter data for target locations, parameters, units, and target date range

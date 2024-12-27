@@ -22,5 +22,5 @@ Processed dataframe
 Process formatted water quality data
 }
 \examples{
-process_wq(df_wq_formatted, "2015-07-01", "2020-06-30")
+process_wq(df_wq_formatted_example, "2015-07-01", "2020-06-30")
 }

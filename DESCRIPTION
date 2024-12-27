@@ -17,4 +17,7 @@ Depends:
 LazyData: true
 Imports: 
     dplyr,
+    magrittr,
     tidyr
+Suggests: 
+    readxl

@@ -26,7 +26,7 @@ List of three dataframes: results, summary, score
 Calculate water quality scores
 }
 \examples{
-assess_wq(df_wq_processed,
+assess_wq(df_wq_processed_example,
                     parameter_name = "Temperature, water",
                     unit = "deg C",
                     max_criteria = 24)

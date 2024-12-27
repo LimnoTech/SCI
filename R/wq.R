@@ -11,7 +11,7 @@
 #' @return List of three dataframes: results, summary, score
 #' @export
 #'
-#' @examples assess_wq(df_wq_processed,
+#' @examples assess_wq(df_wq_processed_example,
 #'                     parameter_name = "Temperature, water",
 #'                     unit = "deg C",
 #'                     max_criteria = 24)

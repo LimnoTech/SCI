@@ -15,7 +15,7 @@
 #' @return List of 2 dataframes: summary and score.
 #' @export
 #'
-#' @examples assess_trash(df_reach, "2020-01-01", "2024-12-31",
+#' @examples assess_trash(df_reach_example, "2020-01-01", "2024-12-31",
 #'     "StreamReachAttributes", "StreamReaches")
 
 

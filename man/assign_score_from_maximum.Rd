@@ -22,5 +22,5 @@ Numerical score (1-10)
 Assign score based on lookup on maximum number of dumpsites per mile
 }
 \examples{
-assign_score_from_maximum(sites_per_mile, dumpsite_score, "max_sites_per_mile")
+assign_score_from_maximum(0.5, dumpsite_score, "max_sites_per_mile")
 }

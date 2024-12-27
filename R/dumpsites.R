@@ -9,7 +9,7 @@
 #' @return Numerical score (1-10)
 #' @export
 #'
-#' @examples assign_score_from_maximum(sites_per_mile, dumpsite_score, "max_sites_per_mile")
+#' @examples assign_score_from_maximum(0.5, dumpsite_score, "max_sites_per_mile")
 
 assign_score_from_maximum <- function(value, lookup_table, lookup_field) {
 
@@ -56,9 +56,7 @@ assign_score_from_maximum <- function(value, lookup_table, lookup_field) {
 #' @return List of 2 dataframes: summary and score.
 #' @export
 #'
-#' @examples assess_dumpsites(df_point, df_reach, "2020-01-01", "2024-12-31",
-#'     "StreamReachAttributes", "StreamReaches",
-#'     "StreamPointAttributes", "StreamPoints_Intersect" )
+#' @examples assess_dumpsites(df_point_example, df_reach_example, "2020-01-01", "2024-12-31","StreamReachAttributes", "StreamReaches","StreamPointAttributes", "StreamPoints_Intersect" )
 
 assess_dumpsites <- function(df_point, df_reach, start_date, end_date, reach_prefix_from_table, reach_prefix_from_layer, point_prefix_from_table, point_prefix_from_layer){
 
@@ -77,6 +75,7 @@ assess_dumpsites <- function(df_point, df_reach, start_date, end_date, reach_pre
 
   df_dump <- df_point %>%
     dplyr::select(location_name = dplyr::all_of(paste0(point_prefix_from_layer, ".SUBSHED")),
+                  id = dplyr::all_of(paste0(point_prefix_from_table, ".featureGlobalID_key")),
                   assessment_type = dplyr::all_of(paste0(point_prefix_from_table, ".assessment_type")),
                   date = dplyr::all_of(paste0(point_prefix_from_table, ".assessment_time")),
                   d_impact = dplyr::all_of(paste0(point_prefix_from_table, ".d_impact")),

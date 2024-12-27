@@ -17,5 +17,5 @@ Formatted dataframe
 Format downloaded water quality data
 }
 \examples{
-format_wq(df_wq)
+format_wq(df_wq_example)
 }
