@@ -2,13 +2,44 @@
 library(readxl)
 library(usethis)
 
-
 devtools::load_all(".")
 
-# Import Data -------------------------------------------------------------
+
+# Input Variables ---------------------------------------------------------
+
+# Excel spreadsheet with Ambient Water Quality Data
+df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI.xlsx")
+
+# Excel spreadsheet with Rapid Stream Assessment (RSA) reach and point data
+df_reach <- readxl::read_excel("data/StreamReaches_20241105.xlsx")
+df_point <- readxl::read_excel("data/StreamPoints_20241105_INT.xlsx")
+
+# Date ranges used for filtering water quality data
+start_date <- "2015-07-01"
+end_date <- "2020-06-30"
+
+# Date ranges used for filtering RSA data (for trees and dumpsites)
+rsa_start_date <- "2020-01-01"
+rsa_end_date <- "2024-12-31"
 
 
-# Lookup Tables - Only needed if data in Excel gets updated
+# Field name prefixes for RSA dataset
+# Prefixes change depending on layer and table names pulled from geodatabase
+reach_prefix_from_table <- "StreamReachAttributes"  # Should match name of stream reach attribute table from RSA .gdb
+reach_prefix_from_layer <- "StreamReaches"          # Should match name of stream reach polyline layer from RSA .gdb
+
+point_prefix_from_table <- "StreamPointAttributes"  # Should match name of stream point attribute table from RSA .gdb
+point_prefix_from_layer <- "StreamPoints_Intersect" # Should match name of intersected stream point layer from RSA .gdb
+
+
+
+
+# Lookup Tables -----------------------------------------------------------
+
+
+# If data in lookup_tables.xlsx is modified, run the corresponding lines of code
+#    below to update the relevant lookup table. Otherwise, keep code as comments
+
     # location_id <- readxl::read_excel("data/lookup_tables.xlsx", sheet = "location_id")
     # usethis::use_data(location_id, overwrite = TRUE)
     #
@@ -47,14 +78,9 @@ devtools::load_all(".")
 
 
 
-df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI.xlsx")
 
 
-start_date <- "2015-07-01"
-end_date <- "2020-06-30"
-
-rsa_start_date <- "2020-01-01"
-rsa_end_date <- "2024-12-31"
+# Run Calculations --------------------------------------------------------
 
 df_wq_formatted <- format_wq(df_wq)
 df_wq_processed <- process_wq(df_wq_formatted, start_date, end_date)
@@ -86,28 +112,11 @@ macro <- macroinvertebrate_summary %>% dplyr::select(sci_subshed,
 
 
 # Assess RSA Data
-df_reach <- readxl::read_excel("data/StreamReaches_20241105.xlsx")
-df_point <- readxl::read_excel("data/StreamPoints_20241105_INT.xlsx")
-
-
-# Define field name prefixes
-# Prefixes change depending on layer and table names pulled from geodatabase
-reach_prefix_from_table <- "StreamReachAttributes"  # Should match name of stream reach attribute table from RSA .gdb
-reach_prefix_from_layer <- "StreamReaches"          # Should match name of stream reach polyline layer from RSA .gdb
-
-point_prefix_from_table <- "StreamPointAttributes"  # Should match name of stream point attribute table from RSA .gdb
-point_prefix_from_layer <- "StreamPoints_Intersect"          # Should match name of intersected stream point layer from RSA .gdb
-
-
-
-
 trash <- assess_trash(df_reach, rsa_start_date, rsa_end_date, reach_prefix_from_table, reach_prefix_from_layer)
 dumpsite <- assess_dumpsites(df_point, df_reach,
                              rsa_start_date, rsa_end_date,
                              reach_prefix_from_table, reach_prefix_from_layer,
                              point_prefix_from_table, point_prefix_from_layer)
-
-
 
 # EIA
 eia <- assess_eia()
