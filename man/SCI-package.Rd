@@ -12,6 +12,7 @@ Calculates scores for hydrology, water quality, human health, and aquatic biolog
 Useful links:
 \itemize{
   \item \url{https://github.com/LimnoTech/SCI}
+  \item \url{https://limnotech.github.io/SCI/}
   \item Report bugs at \url{https://github.com/LimnoTech/SCI/issues}
 }
 
