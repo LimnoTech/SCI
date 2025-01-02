@@ -14,8 +14,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-
-
 # Additional Processing
 
 ## Trees
@@ -25,3 +23,7 @@ knitr::opts_chunk$set(
 ## EIA
 
 # FAQs
+
+1.  The Rock Creek mainstem includes both the MS4 and CSS. The Rock Creek watershed also includes additional area beyond the Rock Creek SCI subwatersheds. What area of Rock Creek is used for the SCI analysis?
+
+    **The entire Rock Creek watershed is used in the SCI analysis. See the \"eia_rock_creek\" tab in the lookup spreadsheet for a full list of subsheds included.**
