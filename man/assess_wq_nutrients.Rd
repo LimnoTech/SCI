@@ -27,5 +27,8 @@ List of three dataframes: results, summary, score
 Calculate water quality scores for nutrients
 }
 \examples{
-assess_wq_nutrients(df_wq_processed_example, parameter_name = "Phosphorus, Total (as P)", piedmont_criteria = 0.04, coastal_plain_criteria = 0.0225)
+assess_wq_nutrients(df_wq_processed_example,
+                              parameter_name = "Phosphorus, Total (as P)",
+                              piedmont_criteria = 0.04,
+                              coastal_plain_criteria = 0.0225)
 }

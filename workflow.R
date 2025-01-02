@@ -8,7 +8,7 @@ devtools::load_all(".")
 # Input Variables ---------------------------------------------------------
 
 # Excel spreadsheet with Ambient Water Quality Data
-df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI.xlsx")
+df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI_downloaded_20250102.xlsx")
 
 # Excel spreadsheet with Rapid Stream Assessment (RSA) reach and point data
 df_reach <- readxl::read_excel("data/StreamReaches_20241105.xlsx")

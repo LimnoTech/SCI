@@ -22,7 +22,14 @@
 #' @return List of 2 dataframes: summary and score.
 #' @export
 #'
-#' @examples assess_dumpsites(df_point_example, df_reach_example, "2020-01-01", "2024-12-31","StreamReachAttributes", "StreamReaches","StreamPointAttributes", "StreamPoints_Intersect" )
+#' @examples assess_dumpsites(df_point_example,
+#'                            df_reach_example,
+#'                            "2020-01-01",
+#'                            "2024-12-31",
+#'                            "StreamReachAttributes",
+#'                            "StreamReaches",
+#'                            "StreamPointAttributes",
+#'                            "StreamPoints_Intersect" )
 
 assess_dumpsites <- function(df_point, df_reach, start_date, end_date, reach_prefix_from_table, reach_prefix_from_layer, point_prefix_from_table, point_prefix_from_layer){
 

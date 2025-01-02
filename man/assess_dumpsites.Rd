@@ -49,5 +49,12 @@ List of 2 dataframes: summary and score.
 Calculate dumpsite scores
 }
 \examples{
-assess_dumpsites(df_point_example, df_reach_example, "2020-01-01", "2024-12-31","StreamReachAttributes", "StreamReaches","StreamPointAttributes", "StreamPoints_Intersect" )
+assess_dumpsites(df_point_example,
+                           df_reach_example,
+                           "2020-01-01",
+                           "2024-12-31",
+                           "StreamReachAttributes",
+                           "StreamReaches",
+                           "StreamPointAttributes",
+                           "StreamPoints_Intersect" )
 }
