@@ -2,8 +2,9 @@ pandoc: 3.1.11
 pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
-  sci_details: sci_details.html
-last_built: 2025-01-04T11:26Z
+  faqs: faqs.html
+  pre-processing: pre-processing.html
+last_built: 2025-01-14T00:43Z
 urls:
   reference: https://limnotech.github.io/SCI/reference
   article: https://limnotech.github.io/SCI/articles

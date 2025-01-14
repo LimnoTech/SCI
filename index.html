@@ -35,7 +35,8 @@
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
-<li><a class="dropdown-item" href="articles/sci_details.html">sci_details</a></li>
+<li><a class="dropdown-item" href="articles/faqs.html">FAQs</a></li>
+    <li><a class="dropdown-item" href="articles/pre-processing.html">Pre-Processing</a></li>
   </ul>
 </li>
       </ul>
@@ -70,10 +71,11 @@
 </h2>
 <p>Produce the SCI scores in just a few simple steps:</p>
 <ol style="list-style-type: decimal">
+<li><p>Complete the <a href="https://limnotech.github.io/SCI/articles/pre-processing.html">pre-processing steps</a>, as needed.</p></li>
 <li><p>In RStudio, open the <a href="https://github.com/LimnoTech/SCI/blob/master/workflow.R" class="external-link">workflow.R</a> script.</p></li>
 <li><p>Update the “Input Variables” section of the script and confirm the latest data files are saved in the <a href="https://github.com/LimnoTech/SCI/tree/master/data" class="external-link">data</a> folder.</p></li>
 <li><p>Update <a href="https://github.com/LimnoTech/SCI/blob/master/data/lookup_tables.xlsx" class="external-link">lookup_tables.xlsx</a> and run code from the “Lookup Tables” section of the script, as needed. Note: this step is not typically necessary.</p></li>
-<li><p>Click the Source button to run the script.</p></li>
+<li><p>Click the Source button to run the workflow.R script.</p></li>
 <li><p>View the results in <a href="https://github.com/LimnoTech/SCI/blob/master/all_scores.csv" class="external-link">all_scores.csv</a>.</p></li>
 </ol>
 </div>
