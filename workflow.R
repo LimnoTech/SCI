@@ -138,5 +138,10 @@ all_scores <- trash[["score"]] %>%
   dplyr::full_join(hab) %>%
   dplyr::full_join(macro)
 
+# Write results file
+write.csv(all_scores, "output/all_scores.csv")
+
+
+
 
 
