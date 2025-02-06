@@ -46,8 +46,6 @@
     <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">assess_dumpsites</span><span class="op">(</span></span>
 <span>  <span class="va">df_point</span>,</span>
 <span>  <span class="va">df_reach</span>,</span>
-<span>  <span class="va">start_date</span>,</span>
-<span>  <span class="va">end_date</span>,</span>
 <span>  <span class="va">reach_prefix_from_table</span>,</span>
 <span>  <span class="va">reach_prefix_from_layer</span>,</span>
 <span>  <span class="va">point_prefix_from_table</span>,</span>
@@ -65,16 +63,6 @@
 
 <dt id="arg-df-reach">df_reach<a class="anchor" aria-label="anchor" href="#arg-df-reach"></a></dt>
 <dd><p>Reach data from Rapid Stream Assessment (RSA) dataset.</p></dd>
-
-
-<dt id="arg-start-date">start_date<a class="anchor" aria-label="anchor" href="#arg-start-date"></a></dt>
-<dd><p>Beginning of timeframe being evaluated (ex. first day of
-five-year assessment period).</p></dd>
-
-
-<dt id="arg-end-date">end_date<a class="anchor" aria-label="anchor" href="#arg-end-date"></a></dt>
-<dd><p>End of timeframe being evaluated (ex. last day of
-five-year assessment period).</p></dd>
 
 
 <dt id="arg-reach-prefix-from-table">reach_prefix_from_table<a class="anchor" aria-label="anchor" href="#arg-reach-prefix-from-table"></a></dt>
@@ -110,24 +98,24 @@ layer from the RSA geodatabase.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">assess_dumpsites</span><span class="op">(</span><span class="va">df_point_example</span>,</span></span>
 <span class="r-in"><span>                           <span class="va">df_reach_example</span>,</span></span>
-<span class="r-in"><span>                           <span class="st">"2020-01-01"</span>,</span></span>
-<span class="r-in"><span>                           <span class="st">"2024-12-31"</span>,</span></span>
 <span class="r-in"><span>                           <span class="st">"StreamReachAttributes"</span>,</span></span>
 <span class="r-in"><span>                           <span class="st">"StreamReaches"</span>,</span></span>
 <span class="r-in"><span>                           <span class="st">"StreamPointAttributes"</span>,</span></span>
 <span class="r-in"><span>                           <span class="st">"StreamPoints_Intersect"</span> <span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> $summary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 7 × 8</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 9 × 8</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Rowwise: </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   sci_subshed            dumpsite_count applied_influence subshed_length_meters</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                           <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>             <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span>                 <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Broad Branch                        1                -<span style="color: #BB0000;">1</span>                 <span style="text-decoration: underline;">9</span>090.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Fort Davis Tributary                1                -<span style="color: #BB0000;">1</span>                 <span style="text-decoration: underline;">1</span>198.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Fort Dupont Tributary               1                -<span style="color: #BB0000;">2</span>                 <span style="text-decoration: underline;">8</span>637.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Fort Stanton Tributary              1                -<span style="color: #BB0000;">2</span>                 <span style="text-decoration: underline;">2</span>214.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Oxon Run                            1                -<span style="color: #BB0000;">1</span>                 <span style="text-decoration: underline;">9</span>965.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Rock Creek                          2                -<span style="color: #BB0000;">2</span>                <span style="text-decoration: underline;">32</span>011.</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Watts Branch                        1                -<span style="color: #BB0000;">2</span>                 <span style="text-decoration: underline;">6</span>013.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">1</span> Broad Branch                        2                -<span style="color: #BB0000;">1</span>                 <span style="text-decoration: underline;">9</span>840.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> Fort Davis Tributary                3                -<span style="color: #BB0000;">2</span>                 <span style="text-decoration: underline;">1</span>469.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> Fort Dupont Tributary               6                -<span style="color: #BB0000;">2</span>                 <span style="text-decoration: underline;">9</span>175.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Fort Stanton Tributary              1                -<span style="color: #BB0000;">2</span>                 <span style="text-decoration: underline;">2</span>507.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Normanstone Creek                   2                -<span style="color: #BB0000;">1</span>                 <span style="text-decoration: underline;">3</span>527.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Oxon Run                            1                -<span style="color: #BB0000;">1</span>                <span style="text-decoration: underline;">10</span>144.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">7</span> Pinehurst Branch                    1                -<span style="color: #BB0000;">1</span>                 <span style="text-decoration: underline;">6</span>001.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">8</span> Rock Creek                          4                -<span style="color: #BB0000;">2</span>                <span style="text-decoration: underline;">38</span>328.</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">9</span> Watts Branch                        2                -<span style="color: #BB0000;">2</span>                 <span style="text-decoration: underline;">6</span>035.</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 4 more variables: subshed_length_miles &lt;dbl&gt;, sites_per_mile &lt;dbl&gt;,</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   score &lt;dbl&gt;, score_weighted &lt;dbl&gt;</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
@@ -136,16 +124,16 @@ layer from the RSA geodatabase.</p></dd>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># Rowwise: </span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    sci_subshed            Dumpsites</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Broad Branch                   8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Fort Davis Tributary           2</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Fort Dupont Tributary          7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Broad Branch                   7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Fort Davis Tributary           1</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Fort Dupont Tributary          2</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Fort Stanton Tributary         4</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Oxon Run                       8</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Rock Creek                     7</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Watts Branch                   6</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Battery Kemble Creek          10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Dalecarlia Tributary          10</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Dumbarton Oaks                10</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Normanstone Creek              4</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Oxon Run                       8</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Pinehurst Branch               7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Rock Creek                     7</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Watts Branch                   5</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Battery Kemble Creek          10</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more rows</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>

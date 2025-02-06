@@ -78,7 +78,7 @@ dataframe inputs of processed RSA reach data and RSA point data
 <li><p>The watershed layer included in RSA database was not used due to
 issue found. For example, layer “Watersheds_Notes_RSA2021” has missing
 area in Rock Creek. Instead used: <a href="https://opendata.dc.gov/datasets/dc-subwatersheds/explore?location=38.890772%2C-77.021832%2C12.98&amp;showTable=true" class="external-link">DC
-Subwatersheds  Open Data Layer</a>.</p></li>
+Subwatersheds Open Data Layer</a>.</p></li>
 </ul>
 <p><br></p>
 </div>
@@ -96,9 +96,10 @@ included in the intersected table</p></li>
 </ul>
 </li>
 <li><p>Intersect <a href="https://opendata.dc.gov/datasets/dc-subwatersheds/explore?location=38.890772%2C-77.021832%2C12.98&amp;showTable=true" class="external-link">DC
-Subwatersheds  Open Data Layer</a> with StreamPoints layer</p></li>
+Subwatersheds Open Data Layer</a> with StreamPoints layer</p></li>
 <li>
-<p>Run the ‘Add Attribute Index’ tool:</p>
+<p>Run the ‘Add Attribute Index’ tool on the Intersected layer so
+that ID field is indexed:</p>
 <ul>
 <li><p>Field to Index: GlobalID_copy</p></li>
 <li><p>Index Name: GlobalID_index</p></li>
@@ -107,19 +108,24 @@ Subwatersheds  Open Data Layer</a> with StreamPoints layer</p></li>
 <li>
 <p>Join StreamPoints attributes table to StreamPoints feature layer.
 See settings in screenshot below:</p>
+<ul>
+<li>If ’One to Many” Join Operation not an option, make sure attribute
+table and feature layer are in the same geodatabase</li>
+</ul>
 <p><img src="figures%2Frsa_join.png" width="326"></p>
 </li>
 <li>
-<p>Export joined StreamPoints table to Excel</p>
+<p>Export joined StreamPoints by using ‘Table to Excel’
+geoprocessing tool</p>
 <ul>
-<li>Save file to R package data folder</li>
-<li>Update file name input variable in workflow.R file</li>
+<li><p>Save file to R package data folder</p></li>
+<li><p>Update file name input variable in workflow.R file</p></li>
 </ul>
 </li>
 <li><p>In the input variables section of workflow.R, update the field
 name prefix variables (if needed)</p></li>
 <li>
-<p>Repeat steps 1, 3,4, 5 and 6 using StreamReaches feature layer
+<p>Repeat steps 1, 3, 4, 5 and 6 using StreamReaches feature layer
 and attribute table</p>
 <ul>
 <li>Skip Step 2 since subshed information is already included as a field

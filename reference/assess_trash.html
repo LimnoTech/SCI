@@ -43,13 +43,7 @@
 
     <div class="section level2">
     <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">assess_trash</span><span class="op">(</span></span>
-<span>  <span class="va">df_reach</span>,</span>
-<span>  <span class="va">start_date</span>,</span>
-<span>  <span class="va">end_date</span>,</span>
-<span>  <span class="va">reach_prefix_from_table</span>,</span>
-<span>  <span class="va">reach_prefix_from_layer</span></span>
-<span><span class="op">)</span></span></code></pre></div>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span><span class="fu">assess_trash</span><span class="op">(</span><span class="va">df_reach</span>, <span class="va">reach_prefix_from_table</span>, <span class="va">reach_prefix_from_layer</span><span class="op">)</span></span></code></pre></div>
     </div>
 
     <div class="section level2">
@@ -58,16 +52,6 @@
 
 <dl><dt id="arg-df-reach">df_reach<a class="anchor" aria-label="anchor" href="#arg-df-reach"></a></dt>
 <dd><p>Reach data from Rapid Stream Assessment (RSA) dataset.</p></dd>
-
-
-<dt id="arg-start-date">start_date<a class="anchor" aria-label="anchor" href="#arg-start-date"></a></dt>
-<dd><p>Beginning of timeframe being evaluated (ex. first day of
-five-year assessment period).</p></dd>
-
-
-<dt id="arg-end-date">end_date<a class="anchor" aria-label="anchor" href="#arg-end-date"></a></dt>
-<dd><p>End of timeframe being evaluated (ex. last day of
-five-year assessment period).</p></dd>
 
 
 <dt id="arg-reach-prefix-from-table">reach_prefix_from_table<a class="anchor" aria-label="anchor" href="#arg-reach-prefix-from-table"></a></dt>
@@ -89,41 +73,12 @@ polyline layer from the RSA geodatabase.</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">assess_trash</span><span class="op">(</span><span class="va">df_reach_example</span>, <span class="st">"2020-01-01"</span>, <span class="st">"2024-12-31"</span>,</span></span>
-<span class="r-in"><span>    <span class="st">"StreamReachAttributes"</span>, <span class="st">"StreamReaches"</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $summary</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 733 × 7</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    location_name        id    date                trash_extent score sci_subshed</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Hickey Run           {000… 2024-10-04 <span style="color: #949494;">15:09:00</span> extensive        1 Hickey Run </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Piney Branch         {001… 2024-06-11 <span style="color: #949494;">16:37:00</span> absent          10 Piney Bran…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> <span style="color: #BB0000;">NA</span>                   {003… 2022-06-08 <span style="color: #949494;">17:06:00</span> absent          10 <span style="color: #BB0000;">NA</span>         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Pinehurst Branch     {004… 2024-05-31 <span style="color: #949494;">14:58:00</span> absent          10 Pinehurst …</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Rock Creek           {008… 2021-07-08 <span style="color: #949494;">13:42:00</span> absent          10 Rock Creek </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> <span style="color: #BB0000;">NA</span>                   {015… 2021-07-29 <span style="color: #949494;">16:44:00</span> minor            7 <span style="color: #BB0000;">NA</span>         </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Broad Branch         {024… 2023-08-25 <span style="color: #949494;">19:20:00</span> minor            7 Broad Bran…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Broad Branch         {027… 2023-08-25 <span style="color: #949494;">19:43:00</span> minor            7 Broad Bran…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Fort Davis Tributary {02A… 2024-09-17 <span style="color: #949494;">16:35:00</span> absent          10 Fort Davis…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Klingle Valley Run   {031… 2024-06-18 <span style="color: #949494;">14:50:00</span> minor            7 Klingle Va…</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 723 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: ecoregion &lt;chr&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> $score</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 22 × 2</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    sci_subshed            Trash</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Battery Kemble Creek    8.43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Broad Branch            8.88</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Dumbarton Oaks         10   </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Fenwick Branch          7.43</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Fort Davis Tributary    8.33</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Fort Dupont Tributary   7.64</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Fort Stanton Tributary  6.47</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Foundry Branch          8.83</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Hickey Run              8.04</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Klingle Valley Run      6.25</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 12 more rows</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">assess_trash</span><span class="op">(</span><span class="va">df_reach_example</span>,</span></span>
+<span class="r-in"><span>                       <span class="st">"StreamReachAttributes"</span>,</span></span>
+<span class="r-in"><span>                       <span class="st">"StreamReaches"</span><span class="op">)</span></span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in dplyr::filter(., date &gt;= start_date &amp; date &lt;= end_date):</span> <span style="color: #00BBBB;">ℹ</span> In argument: `date &gt;= start_date &amp; date &lt;= end_date`.</span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error:</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> object 'start_date' not found</span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
