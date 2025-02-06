@@ -4,22 +4,10 @@
 \alias{assess_trash}
 \title{Calculate trash scores.}
 \usage{
-assess_trash(
-  df_reach,
-  start_date,
-  end_date,
-  reach_prefix_from_table,
-  reach_prefix_from_layer
-)
+assess_trash(df_reach, reach_prefix_from_table, reach_prefix_from_layer)
 }
 \arguments{
 \item{df_reach}{Reach data from Rapid Stream Assessment (RSA) dataset.}
-
-\item{start_date}{Beginning of timeframe being evaluated (ex. first day of
-five-year assessment period).}
-
-\item{end_date}{End of timeframe being evaluated (ex. last day of
-five-year assessment period).}
 
 \item{reach_prefix_from_table}{Field name prefix sourced from RSA reach
 attribute table. Should be consistent with the name of the stream reach
@@ -36,6 +24,7 @@ List of 2 dataframes: summary and score.
 Calculate trash scores.
 }
 \examples{
-assess_trash(df_reach_example, "2020-01-01", "2024-12-31",
-    "StreamReachAttributes", "StreamReaches")
+assess_trash(df_reach_example,
+                       "StreamReachAttributes",
+                       "StreamReaches")
 }

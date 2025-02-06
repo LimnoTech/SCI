@@ -18,18 +18,13 @@ df_point <- readxl::read_excel("data/StreamPoints_20241105_INT.xlsx")
 start_date <- "2015-07-01"
 end_date <- "2020-06-30"
 
-# Date ranges used for filtering RSA data (for trees and dumpsites)
-rsa_start_date <- "2020-01-01"
-rsa_end_date <- "2024-12-31"
-
-
 # Field name prefixes for RSA dataset
 # Prefixes change depending on layer and table names pulled from geodatabase
 reach_prefix_from_table <- "StreamReachAttributes"  # Should match name of stream reach attribute table from RSA .gdb
 reach_prefix_from_layer <- "StreamReaches"          # Should match name of stream reach polyline layer from RSA .gdb
 
 point_prefix_from_table <- "StreamPointAttributes"  # Should match name of stream point attribute table from RSA .gdb
-point_prefix_from_layer <- "StreamPoints_Intersect" # Should match name of intersected stream point layer from RSA .gdb
+point_prefix_from_layer <- "StreamPoints_Nov2024_Intersect" # Should match name of intersected stream point layer from RSA .gdb
 
 
 
@@ -112,9 +107,8 @@ macro <- macroinvertebrate_summary %>% dplyr::select(sci_subshed,
 
 
 # Assess RSA Data
-trash <- assess_trash(df_reach, rsa_start_date, rsa_end_date, reach_prefix_from_table, reach_prefix_from_layer)
+# trash <- assess_trash(df_reach, reach_prefix_from_table, reach_prefix_from_layer)
 dumpsite <- assess_dumpsites(df_point, df_reach,
-                             rsa_start_date, rsa_end_date,
                              reach_prefix_from_table, reach_prefix_from_layer,
                              point_prefix_from_table, point_prefix_from_layer)
 
@@ -122,8 +116,10 @@ dumpsite <- assess_dumpsites(df_point, df_reach,
 eia <- assess_eia()
 
 # Compile scores
-all_scores <- trash[["score"]] %>%
-  dplyr::full_join(dumpsite[["score"]]) %>%
+all_scores <-
+  # trash[["score"]] %>%
+  # dplyr::full_join(dumpsite[["score"]]) %>%
+  dumpsite[["score"]] %>%
   dplyr::full_join(eia[["score"]]) %>%
   dplyr::full_join(temp[["score"]]) %>%
   dplyr::full_join(ph[["score"]]) %>%

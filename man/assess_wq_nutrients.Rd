@@ -12,13 +12,17 @@ assess_wq_nutrients(
 )
 }
 \arguments{
-\item{df}{DOEE Ambient Water Quality Data that has been processed and formatted}
+\item{df}{DOEE Ambient Water Quality Data that has been processed and
+formatted}
 
-\item{parameter_name}{String to indicate target parameter: "Nitrogen", "Phosphorus, Total (as P)"}
+\item{parameter_name}{String to indicate target parameter: "Nitrogen",
+"Phosphorus, Total (as P)"}
 
-\item{piedmont_criteria}{Nutrient criteria recommendation for Piedmont Ecoregion 64 in mg/L}
+\item{piedmont_criteria}{Nutrient criteria recommendation for Piedmont
+Ecoregion 64 in mg/L}
 
-\item{coastal_plain_criteria}{Nutrient criteria recommendation for Coastal Plain Ecoregion 65 in mg/L}
+\item{coastal_plain_criteria}{Nutrient criteria recommendation for Coastal
+Plain Ecoregion 65 in mg/L}
 }
 \value{
 List of three dataframes: results, summary, score

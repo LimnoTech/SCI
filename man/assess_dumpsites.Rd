@@ -7,8 +7,6 @@
 assess_dumpsites(
   df_point,
   df_reach,
-  start_date,
-  end_date,
   reach_prefix_from_table,
   reach_prefix_from_layer,
   point_prefix_from_table,
@@ -19,12 +17,6 @@ assess_dumpsites(
 \item{df_point}{Point data from Rapid Stream Assessment (RSA) dataset.}
 
 \item{df_reach}{Reach data from Rapid Stream Assessment (RSA) dataset.}
-
-\item{start_date}{Beginning of timeframe being evaluated (ex. first day of
-five-year assessment period).}
-
-\item{end_date}{End of timeframe being evaluated (ex. last day of
-five-year assessment period).}
 
 \item{reach_prefix_from_table}{Field name prefix sourced from RSA reach
 attribute table. Should be consistent with the name of the stream reach
@@ -51,8 +43,6 @@ Calculate dumpsite scores
 \examples{
 assess_dumpsites(df_point_example,
                            df_reach_example,
-                           "2020-01-01",
-                           "2024-12-31",
                            "StreamReachAttributes",
                            "StreamReaches",
                            "StreamPointAttributes",
