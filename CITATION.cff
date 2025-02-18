@@ -2,20 +2,18 @@
 # CITATION file created with {cffr} R package
 # See also: https://docs.ropensci.org/cffr/
 # --------------------------------------------
- 
+
 cff-version: 1.2.0
 message: 'To cite package "SCI" in publications use:'
 type: software
 title: 'SCI: Stream Condition Index'
 version: 0.0.0.9000
-doi: 10.32614/CRAN.package.SCI
 abstract: Calculates scores for hydrology, water quality, human health, and aquatic
   biology metrics to assess streams within the District of Columbia.
 authors:
 - family-names: Rucker
   given-names: Shanna
   email: srucker@limno.com
-repository: https://CRAN.R-project.org/package=SCI
 repository-code: https://github.com/LimnoTech/SCI
 url: https://github.com/LimnoTech/SCI
 contact:
