@@ -40,7 +40,7 @@ format_wq <- function(df){
                                                    TRUE ~ result_format)) %>%
     dplyr::mutate(location_format = gsub("\\s+", "", Location)) %>% # Remove all spaces from location_id
     dplyr::mutate(date_format = as.Date(Date, format = "%d %b %Y"),
-                  result_format = as.numeric(result_format)) # Results in warning that NAs introduced by coercion - this is intended result)
+                  result_format = suppressWarnings(as.numeric(result_format))) # Results in warning that NAs introduced by coercion - this is intended result)
 
 
   return(df)
@@ -89,6 +89,15 @@ process_wq <- function(df, start_date, end_date){
       result = result_format,
       qualifier = qualifier_format
     )
+
+  # Identify missing parameters
+  missing_params <- dplyr::setdiff(params, unique(df_processed$parameter))
+
+  # Warn the user if any parameters are missing
+  if (length(missing_params) > 0) {
+    warning("The following parameters are missing from the filtered dataset: ",
+            paste(missing_params, collapse = ", "), ". Consider expanding analysis date range.")
+  }
 
 
 

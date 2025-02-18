@@ -8,15 +8,16 @@ devtools::load_all(".")
 # Input Variables ---------------------------------------------------------
 
 # Excel spreadsheet with Ambient Water Quality Data
-df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI_downloaded_20250102.xlsx")
+df_wq <- readxl::read_excel("data/ARII_Xtab_AmbWQ_SCI_downloaded_20250102.xlsx",
+                            col_types = c("text","text","date","text","text","date", "text","text","text","text"))
 
 # Excel spreadsheet with Rapid Stream Assessment (RSA) reach and point data
 df_reach <- readxl::read_excel("data/StreamReaches_20241105.xlsx")
 df_point <- readxl::read_excel("data/StreamPoints_20241105_INT.xlsx")
 
 # Date ranges used for filtering water quality data
-start_date <- "2015-07-01"
-end_date <- "2020-06-30"
+start_date <- "2017-01-01"
+end_date <- "2024-12-31"
 
 # Field name prefixes for RSA dataset
 # Prefixes change depending on layer and table names pulled from geodatabase
