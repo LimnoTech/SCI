@@ -76,9 +76,39 @@ polyline layer from the RSA geodatabase.</p></dd>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="fu">assess_trash</span><span class="op">(</span><span class="va">df_reach_example</span>,</span></span>
 <span class="r-in"><span>                       <span class="st">"StreamReachAttributes"</span>,</span></span>
 <span class="r-in"><span>                       <span class="st">"StreamReaches"</span><span class="op">)</span></span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in dplyr::filter(., date &gt;= start_date &amp; date &lt;= end_date):</span> <span style="color: #00BBBB;">ℹ</span> In argument: `date &gt;= start_date &amp; date &lt;= end_date`.</span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="font-weight: bold;">Caused by error:</span></span>
-<span class="r-err co"><span class="r-pr">#&gt;</span> <span style="color: #BBBB00;">!</span> object 'start_date' not found</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $summary</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 863 × 7</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    location_name        id    date                trash_extent score sci_subshed</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dttm&gt;</span>              <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>        <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>      </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Hickey Run           {000… 2024-10-04 <span style="color: #949494;">15:09:00</span> extensive        1 Hickey Run </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Piney Branch         {001… 2024-06-11 <span style="color: #949494;">16:37:00</span> absent          10 Piney Bran…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> <span style="color: #BB0000;">NA</span>                   {003… 2022-06-08 <span style="color: #949494;">17:06:00</span> absent          10 <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Pinehurst Branch     {004… 2024-05-31 <span style="color: #949494;">14:58:00</span> absent          10 Pinehurst …</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Rock Creek           {008… 2021-07-08 <span style="color: #949494;">13:42:00</span> absent          10 Rock Creek </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> <span style="color: #BB0000;">NA</span>                   {015… 2021-07-29 <span style="color: #949494;">16:44:00</span> minor            7 <span style="color: #BB0000;">NA</span>         </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Rock Creek           {01A… 2019-10-17 <span style="color: #949494;">13:50:00</span> minor            7 Rock Creek </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Broad Branch         {024… 2023-08-25 <span style="color: #949494;">19:20:00</span> minor            7 Broad Bran…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Broad Branch         {027… 2023-08-25 <span style="color: #949494;">19:43:00</span> minor            7 Broad Bran…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Fort Davis Tributary {02A… 2024-09-17 <span style="color: #949494;">16:35:00</span> absent          10 Fort Davis…</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 853 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 1 more variable: ecoregion &lt;chr&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> $score</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 25 × 2</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    sci_subshed            Trash</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> Battery Kemble Creek    8.38</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> Broad Branch            8.65</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> Dalecarlia Tributary    9.25</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> Dumbarton Oaks          7.75</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> Fenwick Branch          7.43</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> Fort Chaplin Tributary  2.5 </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> Fort Davis Tributary    7.27</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> Fort Dupont Tributary   7.51</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> Fort Stanton Tributary  6.57</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> Foundry Branch          8.92</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 15 more rows</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
