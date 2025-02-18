@@ -107,7 +107,7 @@ macro <- macroinvertebrate_summary %>% dplyr::select(sci_subshed,
 
 
 # Assess RSA Data
-# trash <- assess_trash(df_reach, reach_prefix_from_table, reach_prefix_from_layer)
+trash <- assess_trash(df_reach, reach_prefix_from_table, reach_prefix_from_layer)
 dumpsite <- assess_dumpsites(df_point, df_reach,
                              reach_prefix_from_table, reach_prefix_from_layer,
                              point_prefix_from_table, point_prefix_from_layer)
@@ -117,9 +117,8 @@ eia <- assess_eia()
 
 # Compile scores
 all_scores <-
-  # trash[["score"]] %>%
-  # dplyr::full_join(dumpsite[["score"]]) %>%
-  dumpsite[["score"]] %>%
+  trash[["score"]] %>%
+  dplyr::full_join(dumpsite[["score"]]) %>%
   dplyr::full_join(eia[["score"]]) %>%
   dplyr::full_join(temp[["score"]]) %>%
   dplyr::full_join(ph[["score"]]) %>%

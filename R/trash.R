@@ -23,13 +23,13 @@ assess_trash <- function(df_reach, reach_prefix_from_table, reach_prefix_from_la
                   id = dplyr::all_of(paste0(reach_prefix_from_table, ".featureGlobalID_key")),
                   date = dplyr::all_of(paste0(reach_prefix_from_table, ".assessment_time")),
                   trash_extent = dplyr::all_of(paste0(reach_prefix_from_table, ".trash_extent"))) %>%
-    dplyr::filter(date >= start_date & date <= end_date) %>%
-    dplyr::group_by(id) %>%
-    dplyr::slice_max(date, n=1, with_ties = FALSE) %>% # Remove duplicate reaches. Keep most recent reach assessment. If same date/time and ID, maintain only one record
-    dplyr::ungroup() %>%
     dplyr::left_join(trash_score, by = "trash_extent") %>%
     dplyr::left_join(location_name, by = "location_name") %>%
-    dplyr::filter(!is.na(trash_extent))   # Remove data records with no trash extent entry
+    dplyr::filter(!is.na(trash_extent)) %>%    # Remove data records with no trash extent entry
+    dplyr::arrange(score) %>% # Arrange assessments by score so When removing duplicates, if there are duplicate reaches with the same time, choose the lowest score to be more conservative
+    dplyr::group_by(id) %>%
+    dplyr::slice_max(date, n=1, with_ties = FALSE) %>% # Remove duplicate reaches. Keep most recent reach assessment. If same date/time and ID, maintain only one record
+    dplyr::ungroup()
 
 
   df_score <- df_summary %>%

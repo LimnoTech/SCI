@@ -14,15 +14,29 @@ knitr::opts_chunk$set(
 )
 ```
 
-# Effective Impervious Area (EIA)
+# Hydrology Index
 
-1.  The Rock Creek mainstem includes both the MS4 and CSS. The Rock Creek watershed also includes additional area beyond the Rock Creek SCI subwatersheds. What area of Rock Creek is used for the SCI analysis?
+##### *Effective Impervious Area (EIA)*
 
-    **The entire Rock Creek watershed is used in the SCI analysis. See the "eia_rock_creek" tab in the lookup spreadsheet for a full list of subsheds included.**
+**The Rock Creek mainstem includes both the MS4 and CSS. The Rock Creek watershed also includes additional area beyond the Rock Creek SCI subwatersheds. What area of Rock Creek is used for the SCI analysis?**
+
+The entire Rock Creek watershed is used in the SCI analysis. See the "eia_rock_creek" tab in the lookup spreadsheet for a full list of subsheds included.
+
+<br>
+
+# Human Health Index
+
+##### *Dumpsites, Trash, E. coli*
+
+**What timeframe is used for the trash and dumpsite analyses?**
+
+Since the analysis uses data from the Rapid Stream Assessments (RSA), the timeframe can vary and is not limited to a set five year period. The most recent data from each assessment point and reach is used.
 
 <br>
 
 # Water Quality Index
+
+##### *Dissolved Oxygen, Turbidity, Conductivity, Temperature, Nitrogen, Phosphorus, pH*
 
 **How are non-detects handled in the dataset?**
 
@@ -39,6 +53,8 @@ For the nutrient WQ indicatiors (TN and TP), the assess_wq_nutrients() requires 
 <br>
 
 # Aquatic Life Index
+
+##### *Fish, Habitat, Macroinvertebrate, Connection to the Mainstem*
 
 **How are the aquatic life metrics calculated?** 
 
@@ -111,7 +127,7 @@ Possible things to try include:
 
 <br>
 
-# Contacts
+# Contact
 
 **Who should I contact if I have questions about the R package?**
 
