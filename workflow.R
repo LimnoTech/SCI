@@ -139,5 +139,17 @@ write.csv(all_scores, "output/all_scores.csv")
 
 
 
+# Create Graphics ---------------------------------------------------------
+
+
+grades <- calculate_grades(all_scores)
+
+graphic_files <- grades[["graphics"]]
+
+# Write grades file
+write.csv(grades[["index_grades"]], "output/index_grades.csv")
+write.csv(grades[["overall_grades"]], "output/overall_grades.csv")
+
+
 
 
