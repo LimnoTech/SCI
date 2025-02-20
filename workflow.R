@@ -28,6 +28,11 @@ point_prefix_from_table <- "StreamPointAttributes"  # Should match name of strea
 point_prefix_from_layer <- "StreamPoints_Nov2024_Intersect" # Should match name of intersected stream point layer from RSA .gdb
 
 
+# Output filepaths
+all_scores_path <- "output/all_scores.csv"
+index_grades_path <- "output/index_grades.csv"
+overall_grades_path <- "output/overall_grades.csv"
+graphics_ppt_path <- "output/SCI_graphics.pptx"
 
 
 # Lookup Tables -----------------------------------------------------------
@@ -135,21 +140,22 @@ all_scores <-
   dplyr::full_join(macro)
 
 # Write results file
-write.csv(all_scores, "output/all_scores.csv")
+write.csv(all_scores, file = all_scores_path)
 
 
 
 # Create Graphics ---------------------------------------------------------
 
-
+# Calculate grades to be represented in each graphic
 grades <- calculate_grades(all_scores)
 
-graphic_files <- grades[["graphics"]]
+grade_graphics <- grades[["graphics"]]
 
 # Write grades file
-write.csv(grades[["index_grades"]], "output/index_grades.csv")
-write.csv(grades[["overall_grades"]], "output/overall_grades.csv")
+write.csv(grades[["index_grades"]], index_grades_path)
+write.csv(grades[["overall_grades"]], overall_grades_path)
 
-
+# Generate graphics
+create_graphics(grade_graphics, graphics_ppt_path)
 
 
