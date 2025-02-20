@@ -4,6 +4,7 @@
 <url><loc>https://limnotech.github.io/SCI/LICENSE.html</loc></url>
 <url><loc>https://limnotech.github.io/SCI/articles/faqs.html</loc></url>
 <url><loc>https://limnotech.github.io/SCI/articles/index.html</loc></url>
+<url><loc>https://limnotech.github.io/SCI/articles/post-processing.html</loc></url>
 <url><loc>https://limnotech.github.io/SCI/articles/pre-processing.html</loc></url>
 <url><loc>https://limnotech.github.io/SCI/authors.html</loc></url>
 <url><loc>https://limnotech.github.io/SCI/index.html</loc></url>
@@ -14,6 +15,8 @@
 <url><loc>https://limnotech.github.io/SCI/reference/assess_wq.html</loc></url>
 <url><loc>https://limnotech.github.io/SCI/reference/assess_wq_nutrients.html</loc></url>
 <url><loc>https://limnotech.github.io/SCI/reference/assign_score_from_maximum.html</loc></url>
+<url><loc>https://limnotech.github.io/SCI/reference/calculate_grades.html</loc></url>
+<url><loc>https://limnotech.github.io/SCI/reference/create_graphics.html</loc></url>
 <url><loc>https://limnotech.github.io/SCI/reference/format_wq.html</loc></url>
 <url><loc>https://limnotech.github.io/SCI/reference/index.html</loc></url>
 <url><loc>https://limnotech.github.io/SCI/reference/pipe.html</loc></url>
