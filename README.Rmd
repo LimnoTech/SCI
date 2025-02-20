@@ -44,4 +44,4 @@ Produce the SCI scores in just a few simple steps:
 
 5.  Click the Source button to run the workflow.R script.
 
-6.  View the results in [all_scores.csv](https://github.com/LimnoTech/SCI/blob/master/all_scores.csv).
+6. Complete the [post-processing steps](https://limnotech.github.io/SCI/articles/post-processing.html) to generate the SCI image files for each subwatershed

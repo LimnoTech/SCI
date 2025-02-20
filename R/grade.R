@@ -1,6 +1,11 @@
-
-
-
+#' Calculate grade for each index and subwatershed
+#'
+#' @param all_scores compiled scores for each metric and subwatershed
+#'
+#' @returns List of three dataframes: index_grades, overall_grades, graphics
+#' @export
+#'
+#' @examples calculate_grades(df_all_scores_example)
 calculate_grades <- function(all_scores){
 
   # Create index dataframe
@@ -95,11 +100,6 @@ calculate_grades <- function(all_scores){
 
   return(list(index_grades = df_grades, overall_grades = df_overall_grades, graphics = df_graphics))
 
-
-  # # Export grades to Excel
-  # write_xlsx(df_grades, "template_files/grades/df_grades.xlsx")
-  # write_xlsx(df_overall_grades, "template_files/grades/df_overall_grades.xlsx")
-  # write_xlsx(df_graphics, "template_files/grades/df_graphics.xlsx")
 
 
 

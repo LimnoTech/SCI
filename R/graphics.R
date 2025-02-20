@@ -1,4 +1,12 @@
-
+#' Populate powerpoint template to create graphic for each subwatershed
+#'
+#' @param df_graphics dataframe returned from \code{\link{calculate_grades}}
+#' that includes filepaths to graphic pieces that will makeup final subwatershed
+#' graphic
+#' @param output_path filepath of output powerpoint slide deck (.pptx)
+#'
+#' @returns powerpoint slide deck containing graphics for each subwatershed
+#' @export
 create_graphics <- function(df_graphics, output_path) {
 
 

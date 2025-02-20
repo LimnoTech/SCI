@@ -1,0 +1,85 @@
+---
+title: "Post-Processing"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{post-processing}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Export Graphics
+
+After running workflow.R, a PowerPoint slide deck should have been created that contains one slide for each subwatershed graphic. Follow the below steps to export the graphics to image files:
+
+1.  Open SCI_graphics.pptx
+
+2.  Save slide deck as a .pptm so that it can handle macros
+
+3.  In the View tab, click Macros
+
+4.  Type in a new Macro Name, such as "exportSlides". Click *Create*
+
+5.  Copy in the Excel VBA code
+
+    ``` ExcelVBA
+    Sub exportSlides()
+
+        On Error Resume Next
+        MkDir "C:\Users\example_user\Git\SCI\output\graphics\"
+        
+        Dim osld As Slide
+        
+        For Each osld In ActivePresentation.Slides
+            osld.Export "C:\Users\example_user\Git\SCI\output\graphics\" & Getname(osld), "PNG"
+        Next osld
+        
+    End Sub
+
+    Function Getname(osld As Slide) As String
+        Dim strTitle As String
+        Dim nonValid() As String
+        Dim i As Integer
+        
+        
+        If osld.Shapes.HasTitle Then
+            If osld.Shapes.Title.TextFrame.HasText Then
+                strTitle = osld.Shapes.Title.TextFrame.TextRange
+            End If
+        End If
+        
+        If Len(strTitle) < 1 Then strTitle = "Slide" & CStr(osld.SlideIndex)
+            'strips SOME non valid characters
+            'make sure titles do not contain any others
+            nonValid = Split("\$/$:$.$,$?$*$<$>$", "$")
+            
+            For i = 1 To UBound(nonValid)
+                strTitle = Replace(strTitle, nonValid(i), "")
+            Next i
+            
+            'Replace spaces with underscores
+            strTitle = Replace(strTitle, " ", "_")
+            
+            Getname = CStr(osld.SlideIndex) & "_" & strTitle & ".png"
+    End Function
+    ```
+
+6.  In the macro sub, update the two file paths with the location where you want the graphics to be saved
+
+7.  Click the Run button (or hit F5)
+
+Note: A transparent background is not possible with this macro. If a transparent image background is required, complete the following steps for each individual PowerPoint slide:
+
+1.   Select all five individual images (drag mouse over entire slide to select)
+
+2.   Right click, *Group* all five images (if the *Group* button is disabled, may need to cut and re-paste images and try grouping again)
+
+3.   Right click grouped image, *Save as Picture*
+
+4.   Choose file destination. Save as .png file type
